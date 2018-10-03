@@ -6,7 +6,7 @@ import { HomePage } from '../home/home';
   selector: 'project-post-form',
   templateUrl: 'project-post-form.html'
 })
-export class ProjectPostForm {
+export class ProjectPostFormPage {
 
   public anArray:any=[];
 

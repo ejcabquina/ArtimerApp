@@ -3,16 +3,16 @@ import { NavController } from 'ionic-angular';
 import { HttpClientModule } from '@angular/common/http'
 import { Http, Headers } from '@angular/http'
 
-import { CPanelClient } from '../cpanel-client/cpanel-client';
-import { Register } from '../register/register';
+import { CPanelClientPage } from '../cpanel-client/cpanel-client';
+import { RegisterPage } from '../register/register';
 
 
 
 @Component({
-  selector: 'login-page',
+  selector: 'page-login',
   templateUrl: 'login.html'
 })
-export class Login {
+export class LoginPage {
 
   constructor(public navCtrl: NavController) {
 
@@ -21,10 +21,10 @@ export class Login {
   
 
   login() {
-    this.navCtrl.push(CPanelClient);
+    this.navCtrl.push(CPanelClientPage);
   }
 
     gotoRegister() {
-      this.navCtrl.push(Register);
+      this.navCtrl.push(RegisterPage);
     }
 }

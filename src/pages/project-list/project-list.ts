@@ -9,10 +9,10 @@ import 'rxjs/add/operator/filter';
 import { HomePage } from '../home/home';
 
 @Component({
-  selector: 'project-list',
+  selector: 'page-project-list',
   templateUrl: 'project-list.html'
 })
-export class ProjectList {
+export class ProjectListPage {
   public items:any;
   constructor(public navCtrl: NavController, public http: HttpClient) {
     this.getData();

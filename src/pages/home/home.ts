@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { Login } from '../login/login'
-import { Register } from '../register/register'
-import { ProjectList } from '../project-list/project-list'
+import { LoginPage } from '../login/login'
+import { RegisterPage } from '../register/register'
+import { ProjectListPage } from '../project-list/project-list'
 
 @Component({
     selector: 'page-home',
@@ -14,15 +14,15 @@ import { ProjectList } from '../project-list/project-list'
     }
 
     gotoLogin() {
-      this.navCtrl.push(Login);
+      this.navCtrl.push(LoginPage);
     }
   
     gotoRegister() {
-      this.navCtrl.push(Register);
+      this.navCtrl.push(RegisterPage);
     }
 
     gotoProjectList() {
-      this.navCtrl.push(ProjectList);
+      this.navCtrl.push(ProjectListPage);
     }
 
   }

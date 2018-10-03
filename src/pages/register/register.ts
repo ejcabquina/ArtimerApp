@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { Login } from '../login/login';
+import { LoginPage } from '../login/login';
 
 
 @Component({
-  selector: 'register',
+  selector: 'page-register',
   templateUrl: 'register.html'
 })
-export class Register {
+export class RegisterPage {
 
   constructor(public navCtrl: NavController) {
 
@@ -19,7 +19,7 @@ export class Register {
   }
 
   gotoLogin() {
-    this.navCtrl.push(Login);
+    this.navCtrl.push(LoginPage);
   }
 
 

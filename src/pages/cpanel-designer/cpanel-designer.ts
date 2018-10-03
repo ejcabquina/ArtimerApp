@@ -5,10 +5,10 @@ import { HomePage } from '../home/home';
 
 
 @Component({
-  selector: 'cpanel-designer',
+  selector: 'page-cpanel-designer',
   templateUrl: 'cpanel-designer.html'
 })
-export class CPanelDesigner {
+export class CPanelDesignerPage {
 
   constructor(public navCtrl: NavController) {
 
