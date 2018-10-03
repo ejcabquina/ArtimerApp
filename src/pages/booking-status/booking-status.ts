@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { BookingStatusViewPage } from '../booking-status-view/booking-status-view';
 /**
  * Generated class for the BookingStatusPage page.
  *
@@ -20,6 +20,10 @@ export class BookingStatusPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad BookingStatusPage');
+  }
+
+  gotoBookingStatusViewPage(){
+    this.navCtrl.push(BookingStatusViewPage)
   }
 
 }

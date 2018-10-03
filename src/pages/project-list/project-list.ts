@@ -7,6 +7,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/filter';
 
 import { HomePage } from '../home/home';
+import { ProjectDetailsViewPage } from '../project-details-view/project-details-view'
 
 @Component({
   selector: 'page-project-list',
@@ -26,7 +27,12 @@ export class ProjectListPage {
     })
   }
 
-  gotoHomePage():void {
+  gotoHomePage() {
     this.navCtrl.push(HomePage);
   }
+
+  gotoProjectDetailsViewPage(){
+    this.navCtrl.push(ProjectDetailsViewPage);
+  }
+  
 }
