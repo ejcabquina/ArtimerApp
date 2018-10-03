@@ -9,22 +9,31 @@
         <ion-card id="prof-container">
                 <ion-col class="prof-img-container" col-5>
                         
-                        <img alt="Profile Photo" class="prof-img" src="assets/imgs/profile/123.jpg">    
+                        <img alt="Profile Photo" (click)="gotoProfilePage()" class="prof-img" src="assets/imgs/profile/123.jpg">    
                         
                 </ion-col>
 
-                <ion-col col-7>
-                        <div id="name-label">
+                <ion-col class="info-wrapper" col-7>
+                        <div id="display-name">
                                 Hi Juan Dela Cruz!
                         </div>
 
-                        <div id="name-label">
-
+                        <div id="sub-info-wrapper">
+                                <div id="account-type">
+                                        Client,
+                                </div>
+                                
+                                <div id="date-joined">
+                                        January 2018
+                                </div>
+                        </div>
+                        <div id="email">
+                                ejcabquina@gmail.com
                         </div>
 
-                        <div id="name-label">
+                        <div id="locality">Quezon City, NCR</div>
 
-                        </div>
+                        
                 </ion-col>
         </ion-card>
 
@@ -32,11 +41,10 @@
  
         <ion-card id="short-desc-wrapper">
                 <ion-row class="center-short-desc">
-                       <p class="short-desc">
-                              
-
-                        
-                       </p> 
+                <div class="short-desc-title">Short Description</div>
+                        <div class="short-desc">
+                                The most popular industrial group ever, and largely responsible for bringing the music to a mass audience.
+                        </div>
                 </ion-row>
         </ion-card>
 

@@ -1,65 +1,83 @@
 <ion-header>
-  <ion-navbar color="client" hideBackButton>
-          <img id="navlogo" (click) ="gotoHomePage()" alt="logo"  src="assets/imgs/navlogo.svg" >
+  <ion-navbar color="client">
+          <img id="navlogo"  alt="logo"  src="assets/imgs/navlogo.svg" >
   </ion-navbar>
 </ion-header>
 
 <ion-content>
 <ion-grid>
-  <ion-card id="prof-container">
-          <ion-col class="prof-img-container" col-5>
-                  
-                  <img alt="Profile Photo" class="prof-img" src="assets/imgs/profile/123.jpg">    
-                  
-          </ion-col>
-
-          <ion-col col-7>
-                  <h1></h1>
-                  <p>
-                   <br>
-                  <br>
+        <ion-card id="prof-container">
+                <ion-col class="prof-img-container" col-5>                  
+                        <img alt="Profile Photo" (click)="gotoProfilePage()" class="prof-img" src="assets/imgs/profile/123.jpg">                 
+                </ion-col>
+                
+                <ion-col class="info-wrapper" col-7>
+                        <div id="display-name">
+                                Hi Juan Dela Cruz!
+                        </div>
+                        <div id="sub-info-wrapper">
+                                <div id="account-type">
+                                        Client,
+                                </div>         
+                                <div id="date-joined">
+                                        January 2018
+                                </div>
+                        </div>
+                        <div id="email">
+                                ejcabquina@gmail.com
+                        </div>
+                
+                        <div id="locality">Quezon City, NCR</div>              
+                </ion-col>
+        </ion-card>
+                
+                
                  
-                  </p>
-          </ion-col>
+        <ion-card id="short-desc-wrapper">
+                <ion-row class="center-short-desc">
+                <div class="short-desc-title">Short Description</div>
+                        <div class="short-desc">
+                                The most popular industrial group ever, and largely responsible for bringing the music to a mass audience.
+                        </div>
+                </ion-row>
+        </ion-card>
+
+
+  <ion-card id="rating-section">
+        <ion-row>
+
+        </ion-row>
+
+        <ion-row>
+        <ion-segment [(ngModel)]="ratingType" color="primary">
+                <ion-segment-button value="Positive">
+                        Positive
+                </ion-segment-button>
+                <ion-segment-button value="Neutral">
+                        Neutral
+                </ion-segment-button>
+                <ion-segment-button value="Negative">
+                        Negative
+                </ion-segment-button>
+        </ion-segment>
+        </ion-row>
+                        
   </ion-card>
 
+  <ion-card id="gallery-section"> 
+        <ion-card id="gallery-title-wrapper">
+                <div class="gallery-title">Sample Images</div>
+        </ion-card>
 
-
-  <ion-card id="short-desc-wrapper">
-          <ion-row class="center-short-desc">
-                 <p class="short-desc">titetetas;dlkalskd;laskd;laksd;ald;alsdka;d
-                         titetetas;dlkalskd;laskd;laksd;ald;alsdka;d
-                         titetetas;dlkalskd;laskd;laksd;ald;alsdka;d
-                         titetetas;dlkalskd;laskd;laksd;ald;alsdka;d
-                         titetetas;dlkalskd;laskd;laksd;ald;alsdka;d
-                         titetetas;dlkalskd;laskd;laksd;ald;alsdka;d
-                         titetetas;dlkalskd;laskd;laksd;ald;alsdka;d
-                 </p> 
-          </ion-row>
+        <ion-col class="gallery-img-container" col-4>
+                <div class="gallery-img-wrapper">
+                        <img class="img-btn" (click)="EnlargeImage()" src="" />
+                </div>
+        </ion-col>
+  
   </ion-card>
+
 
   
-
-  <ion-card id="sml-btn-container">
-          
-          
-
-  </ion-card>
-
-  <ion-card id="lrg-btn-container"> 
-          
-  
-  </ion-card>
-
-  
-
-
-  <ion-card id="guide-container">
-          <ion-col id="guide-label-wrapper" col-7><div id="guide-label">What is Creative Brief? </div></ion-col>
-          <ion-col id="guide-btn-wrapper" col-5><button id="guide-btn" (click) ="gotoCreativeBrief()" ion-button color="designer">Learn More</button></ion-col>
-  </ion-card>
-
-</ion-grid>
-
-  
+</ion-grid>  
 </ion-content>

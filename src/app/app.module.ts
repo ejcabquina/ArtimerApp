@@ -26,6 +26,7 @@ import { BrowseProfilePage } from '../pages/browse-profile/browse-profile';
 import { MessengerPage } from '../pages/messenger/messenger';
 import { NotificationPage } from '../pages/notification/notification';
 import { CreativeBriefFaqPage } from '../pages/creative-brief-faq/creative-brief-faq';
+import { ProfilePage } from '../pages/profile/profile';
 
 
 
@@ -47,7 +48,8 @@ import { CreativeBriefFaqPage } from '../pages/creative-brief-faq/creative-brief
     BrowseProfilePage,
     MessengerPage,
     NotificationPage,
-    CreativeBriefFaqPage
+    CreativeBriefFaqPage,
+    ProfilePage
   ],
   imports: [
     BrowserModule,HttpClientModule, HttpModule,
@@ -72,7 +74,8 @@ import { CreativeBriefFaqPage } from '../pages/creative-brief-faq/creative-brief
     BrowseProfilePage,
     MessengerPage,
     NotificationPage,
-    CreativeBriefFaqPage
+    CreativeBriefFaqPage,
+    ProfilePage
   ],
   providers: [
     StatusBar,

@@ -56,13 +56,51 @@ ion-grid {
         }
 
         .info-wrapper{
+            padding-top: 1.5vh;
+            padding-bottom: 1.5vh;
             height:100%;
             display:flex !important;
             justify-content: flex-start !important;
-            align-items: center !important;
             flex: 1, 1, 100% !important;
             flex-flow: column nowrap !important;
             font-size: 3vh;
+            word-break: keep-all;
+
+            #display-name{
+                font-size: 3vh;
+                font-weight: bold;
+                
+            }
+
+            #sub-info-wrapper{
+                display: flex;
+                flex-flow: row nowrap !important;
+
+                #account-type{
+                    font-size: 2vh;
+                    color: #ababab;
+                    
+                }
+
+                #date-joined{
+                    padding-left: 0.2em;
+                    font-size: 2vh;
+                    color: #ababab;
+                
+                }
+            }
+
+            #email{
+                font-size: 2vh;
+                color: #ababab;
+                
+            }
+
+            #locality {
+                padding-top: 0.3vh;
+                font-size: 2vh;
+                color: #7c2417;
+            }
 
 
         }
@@ -77,21 +115,30 @@ ion-grid {
         align-items: center !important ;
         align-content: space-between !important ;
         flex-flow: row wrap !important;
-        padding:5%;
+        padding:1vh;
         .center-short-desc{
             height: 85%;
             display:flex !important;
-            justify-content: center !important;
-            align-items: center !important;
+            justify-content: center;
             flex: 1, 1, 100% !important;
+
+            .short-desc-title{
+               
+                padding-left: 2vh;
+                font-size: 2.5vh;
+                font-weight: bold;
+            }
 
             .short-desc{
                 height: 80%;
                 display: flex !important;
-                justify-content: center !important;
-                align-items: center !important;
-                text-align: center !important;
                 overflow: hidden;
+                padding-top: 1vh;
+                padding-left: 2vh;
+                padding-right: 2vh;
+                font-size: 2vh;
+                line-height: normal;
+                word-wrap: break-word;
             }
         }
     }

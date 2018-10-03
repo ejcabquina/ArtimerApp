@@ -16,6 +16,7 @@ import { BrowseProfilePage } from '../browse-profile/browse-profile';
 import { MessengerPage } from '../messenger/messenger';
 import { NotificationPage } from '../notification/notification';
 import { CreativeBriefFaqPage } from '../creative-brief-faq/creative-brief-faq';
+import { ProfilePage } from '../profile/profile';
 
 @Component({
   selector: 'page-cpanel-client',
@@ -71,6 +72,10 @@ export class CPanelClientPage {
 
   gotoCreativeBriefFAQPage(){
     this.navCtrl.push(CreativeBriefFaqPage)
+  }
+
+  gotoProfilePage(){
+    this.navCtrl.push(ProfilePage)
   }
   
 }
