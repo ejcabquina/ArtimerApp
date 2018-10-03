@@ -10,6 +10,10 @@ import { Register } from '../pages/register/register';
 import { CPanelDesigner } from '../pages/cpanel-designer/cpanel-designer';
 import { CPanelClient } from '../pages/cpanel-client/cpanel-client';
 import { EditProfilePage } from '../pages/edit-profile/edit-profile';
+import { BookingStatusPage } from '../pages/booking-status/booking-status';
+import { BookingStatusViewPage } from '../pages/booking-status-view/booking-status-view';
+
+
 
 @Component({
   templateUrl: 'app.html'

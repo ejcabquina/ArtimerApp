@@ -9,6 +9,7 @@ import 'rxjs/add/operator/filter';
 import { HomePage } from '../home/home';
 import { ProjectPostForm } from '../project-post-form/project-post-form';
 import { EditProfilePage } from '../edit-profile/edit-profile';
+import { BookingStatusPage } from '../booking-status/booking-status';
 
 @Component({
   selector: 'cpanel-client',
@@ -40,4 +41,9 @@ export class CPanelClient {
   gotoEditProfile(){
     this.navCtrl.push(EditProfilePage);
   }
+
+  gotoBookingStatus(){
+    this.navCtrl.push(BookingStatusPage);
+  }
+  
 }

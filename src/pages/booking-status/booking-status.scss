@@ -1,3 +1,89 @@
 page-booking-status {
 
+    ion-title{
+        .toolbar-title{
+            color: #7c2417;
+        }
+    }
+    
+
+    #navlogo {
+        height: auto !important;
+        width: 50% !important;
+        position: relative;
+	    top: 50%;
+        transform: translateY(-50%);
+        left: 50%;
+        transform: translateX(-50%);
+        }
+
+        
+
+
+    ion-content{
+        height: 100%;
+ 
+ 
+    .col{
+        padding:0%;
+    }
+
+    .row{
+        padding: 0%;
+    }
+
+
+    
+    ion-card{
+        height: 15% !important;
+        margin-bottom: 2% !important;
+        width: 100% !important;
+        display:flex !important ;
+        justify-content: flex-end;
+        align-items: center !important ;
+        flex-flow: row nowrap !important;
+
+        .img-wrapper{
+            height: 100% !important;
+            display: flex !important;
+            justify-content: center !important;
+            align-content: center !important;
+            
+
+            .img{
+                height: 11vh;
+                width: 11vh;
+                border-radius: 50vh;
+            }
+        }
+
+        .desc-wrapper{
+            height: 70% !important;
+            display: flex !important;
+            justify-content: center !important;
+            align-content: center !important;
+           
+
+            .project-name-wrapper{
+
+                height: 35%;
+                padding-left: 3%;
+                padding-right: 10%;
+                .project-name{
+                    font-size: 2.3vh;
+                }
+            }
+
+            .project-summary{
+                height: 65%;
+                padding-left: 3%;
+                padding-right: 10%;
+                font-size: 1.5vh;
+            }
+        }
+
+
+    }//ion-card    
+    }//ion-content
+
 }
