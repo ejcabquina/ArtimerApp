@@ -1,0 +1,43 @@
+
+<ion-content padding>
+    
+   <ion-grid>
+
+        <ion-row>
+            <img id="login-logo" alt="logo" src="assets/imgs/logo.svg" > 
+        </ion-row>
+
+        <ion-row>
+            <ion-input class="user" type="text" placeholder="Email" name="name"   required></ion-input>
+        </ion-row>
+
+        <ion-row>
+            <ion-input class="pass" type="password" placeholder="Password" name="password" required></ion-input>  
+        </ion-row>
+
+        <ion-row>
+            <ion-col col-3></ion-col>
+            <ion-col col-6><p class="client-style">Forgot Password?</p></ion-col>
+            <ion-col col-3></ion-col>
+        </ion-row>
+
+        <ion-row id="btn-container">
+            <ion-col id="login-wrapper"><button class="login" (click) ="login()"   ion-button color="client" outline>LOG IN</button></ion-col>
+            <ion-col id="signup-wrapper"><button class="signup" (click) ="gotoRegister()" ion-button color="client">SIGN UP</button></ion-col>
+        </ion-row> 
+
+        <ion-row>
+                <ion-col col-3></ion-col>
+                <ion-col col-6><p class="client-style">or connect with</p></ion-col>
+                <ion-col col-3></ion-col>
+        </ion-row>
+
+        <ion-row id="social-media-btn-wrapper">
+                <ion-col><img class="fb-btn" click="" src="assets/imgs/fb-btn.svg"></ion-col>
+                <ion-col><img class="google-btn" click="" src="assets/imgs/google-btn.svg"></ion-col>
+        </ion-row>
+
+
+
+    </ion-grid>
+</ion-content>

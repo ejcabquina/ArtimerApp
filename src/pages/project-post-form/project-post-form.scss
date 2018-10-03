@@ -1,0 +1,126 @@
+project-post-form {
+    
+    #navlogo {
+        height: auto !important;
+        width: 50% !important;
+        position: relative;
+	    top: 50%;
+        transform: translateY(-50%);
+        left: 50%;
+        transform: translateX(-50%);
+        }
+
+        ion-grid {
+
+            .item-name{
+                font-size: 3vh;
+
+            }
+
+            .input-wrapper{
+                display: flex !important;
+                flex-flow: column nowrap !important;
+
+                .item-name{
+                    font-size: 3vh;
+    
+                }
+            }
+            
+            width: 100% !important;
+            .col{
+                padding:0px;
+            }
+    
+            ion-input {
+                width: 90% !important;
+                display: flex !important;
+                padding: 0.7vh;
+                ::placeholder{
+                    color: #7c2417 !important;
+                    font-size: 2vh;
+                }
+            }
+
+        ion-item{
+            display: flex;
+            flex-wrap: column wrap;
+            padding: 0px;
+
+            ion-label{
+                font-size: 2vh;
+                .checkbox-icon{
+                    border-color: #7c2417;
+                    border-radius: 1vh;
+                }
+                .checkbox-inner{
+                    background-color: #fff;
+                }
+
+                .checkbox-checked {
+                    border-color: #7c2417;
+                    background-color: #fff;
+                }
+
+                .checkbox-inner{
+                    border-color: #7c2417;
+                }
+
+            }
+            ion-select{
+                max-width: 100%;
+                width: 100%;
+            }
+
+        }
+    
+        .client-style {
+            color: #7c2417;
+            font-size: 2vh;
+            border: 1px solid #7c2417;
+            border-radius: 5px;
+            margin: 1%
+        }
+    
+        .client-style-text {
+            color: #7c2417;
+            font-size: 2vh;
+            text-align: center;
+            margin: 1%
+        }
+    
+        .center-style{
+            display:flex !important;
+            justify-content: center !important;
+            align-content: center !important;
+        }
+    
+       
+        .login {
+            height: 6vh !important;
+            width: 100%;
+            border-radius: 5px;
+            margin-left: auto !important;
+            margin-right: auto !important;
+            display: inline-block;
+            font-size: 2vh;
+        }
+      
+            .postProject {
+            height: 12vh !important;
+            width: 70%;
+            border-radius: 5px;
+            margin-left: auto !important;
+            margin-right: auto !important;
+            display: inline-block;
+            font-size: 3vh;
+            }
+            
+            .item-name{
+                word-wrap: break-word;
+            }
+    
+    
+    }//ion-grid
+} //cpanel-client
+

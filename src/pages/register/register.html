@@ -1,0 +1,70 @@
+<ion-content padding>
+<ion-grid>
+    <ion-row>
+        <img id="logo" alt="logo" src="assets/imgs/logo.svg" > 
+    </ion-row>
+
+    
+
+    <ion-row>
+            <ion-input class="client-style" type="text" placeholder="First Name" ></ion-input>
+        
+            <ion-input class="client-style" type="text" placeholder="Last Name" ></ion-input>
+    </ion-row>
+          
+    <ion-row>
+            <ion-input class="client-style" type="email" name="email" placeholder="Email"></ion-input>
+            <ion-input class="client-style" type="email" name="email" placeholder="Re-enter Email"></ion-input>
+    </ion-row>
+          
+    <ion-row>
+            <ion-input class="client-style" placeholder="Username" type="user"></ion-input>
+    </ion-row>
+
+    <ion-row>
+            <ion-input class="client-style" placeholder="Password" type="password"></ion-input>
+            <ion-input class="client-style" placeholder="Confirm Password" type="password"></ion-input>
+    </ion-row>
+
+    <ion-row>
+            <ion-item>
+                <ion-label>Account Type</ion-label>
+                <ion-select class="client-style">
+                  <ion-option value="Client">Client</ion-option>
+                  <ion-option value="Designer">Designer</ion-option>
+                </ion-select>
+              </ion-item>
+    </ion-row>
+
+    <ion-row>
+            <ion-item>
+                <ion-label>Birthdate</ion-label>
+                <ion-select class="client-style" [(ngModel)]="mon">
+                  <ion-option value="Client">Client</ion-option>
+                  <ion-option value="Designer">Designer</ion-option>
+                </ion-select>
+
+                <ion-select class="client-style" [(ngModel)]="day">
+                        <ion-option value="Client">Client</ion-option>
+                        <ion-option value="Designer">Designer</ion-option>
+                </ion-select>
+
+                <ion-select class="client-style" [(ngModel)]="yr">
+                        <ion-option value="Client">Client</ion-option>
+                        <ion-option value="Designer">Designer</ion-option>
+                </ion-select>
+              </ion-item>
+    </ion-row>
+    <button class="signup" (click)="register()" ion-button color="client">CONFIRM</button>
+    
+      
+    
+        <div class="center-style"><p class="client-style-text">Already have an account?</p> </div>
+
+        <button class="login" (click) ="gotoLogin()" ion-button color="client" outline>SIGN IN</button>
+
+
+
+</ion-grid>
+</ion-content>
+  

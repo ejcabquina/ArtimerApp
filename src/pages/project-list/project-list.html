@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar color="client">
+    <img id="navlogo" (click) ="gotoHomePage()" alt="logo"  src="assets/imgs/navlogo.svg" />
+  </ion-navbar>
+
+  <ion-searchbar
+      [(ngModel)]="myInput"
+      [showCancelButton]="shouldShowCancel"
+      (ionInput)="onInput($event)"
+      (ionCancel)="onCancel($event)">
+    </ion-searchbar>
+</ion-header>
+
+<ion-content no-padding>
+  <ion-grid>
+      
+
+      <ion-card *ngFor="let item of items">
+        <ion-col class="img-wrapper" col-4>
+          <img class="img" [src]="item.thumbnailUrl"/>
+        </ion-col>
+        <ion-col class="desc-wrapper" col-8>
+          <ion-card-content>
+            
+              
+              <ion-card-title class="project-name-wrapper" >
+              <div class="project-name">{{item.title}}</div>
+              </ion-card-title>
+        
+              <div class="project-summary">
+                The most popular industrial group ever, and largely
+                responsible for bringing the music to a mass audience.
+              </div>
+            
+          </ion-card-content>
+        </ion-col>
+
+        </ion-card>
+  </ion-grid>
+</ion-content>

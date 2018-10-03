@@ -1,0 +1,112 @@
+login-page {
+    ion-grid{
+        width:100%;
+        height:100%;
+    
+    .col{
+        padding:0px;
+    }
+
+    ion-input {
+        display: flex;
+        align-content: center;
+        padding-left: 1vh;
+        ::placeholder{
+            color: #7c2417 !important;
+            font-size: 2vh;
+        }
+    }
+
+    #login-logo {
+        height: 38vh !important;
+        width: auto !important;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        align-items: center;
+        }
+    
+
+
+     .user{
+            height: 6vh !important;
+            border: 1px solid #7c2417;
+            border-radius: 5px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 4px;
+            margin-bottom: 4px;
+        }
+        
+    .pass{
+            height: 6vh !important;
+            border: 1px solid #7c2417;
+            border-radius: 5px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 4px;
+            margin-bottom: 4px;
+        }
+
+    .client-style {
+        color: #7c2417;
+        font-size: 2vh;
+        padding-top: 0px;
+        text-align: center;
+    }
+    
+    #btn-container{
+        padding:0px;
+
+    #login-wrapper{
+        padding-right: 1%;
+        .login {
+            height: 6vh !important;
+            width: 100%;
+            border-radius: 5px;
+            margin-left: auto !important;
+            margin-right: auto !important;
+            display: inline-block;
+            font-size: 2vh;
+            
+        }
+    }//login-wrapper
+    #signup-wrapper{
+        padding-left: 1%;
+        .signup {
+            height: 6vh !important;
+            width: 100%;
+            border-radius: 5px;
+            margin-left: auto !important;
+            margin-right: auto !important;
+            display: inline-block;
+            font-size: 2vh;
+            }
+    }//signup-wrapper
+    }//btn-container
+    
+   
+    .fb-btn {
+        height: auto !important;
+        width: 45% !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        position: relative;
+        left:50%;
+        transform: translateX(-50%)
+    }
+
+    .google-btn {
+        height: auto !important;
+        width: 45% !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        position: relative;
+        left:50%;
+        transform: translateX(-50%)
+    }
+
+}//ion-grid 
+}//login
+
+

@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-navbar color="client">
+          <img id="navlogo" (click) ="gotoHomePage()" alt="logo"  src="assets/imgs/navlogo.svg" >
+  </ion-navbar>
+</ion-header>
+
+<ion-content no-padding>
+  <ion-grid>
+
+      <ion-row class="input-wrapper">
+            <div class="item-name">Project Name</div>
+            <ion-input class="client-style" type="text" placeholder="Project Name"></ion-input>
+    </ion-row>
+
+    <ion-row class="input-wrapper">
+        <div class="item-name">Project Type</div>
+            <ion-item>
+                <ion-select class="client-style" [(ngModel)]="acct_type">
+                  <ion-option value="Branding">Logo & Branding</ion-option>
+                  <ion-option value="Advertising Campaign">Advertising Campaign</ion-option>
+                  <ion-option value="Illustrations">Drawing, Painting & Illustrations</ion-option>
+                  <ion-option value="Photography">Photography</ion-option>
+                </ion-select>
+              </ion-item>
+    </ion-row>
+    
+    <ion-row class="input-wrapper">
+        <div class="item-name">Project Details</div>
+      <ion-input class="client-style" placeholder="Please write a short detail about the project" type="user"></ion-input>
+    </ion-row>
+
+    
+   
+    <ion-row>
+        <div class="item-name">Deliverable</div>
+        <ion-item *ngFor="let att of anArray; let idx = index">
+            <ion-label color="designer">{{att.label}}{{idx+1}}</ion-label>
+            <ion-input type="text" placeholder="Deliverable"  [(ngModel)]="anArray[idx].value"></ion-input>
+            <ion-input type="number" placeholder="pcs"  ></ion-input>
+        </ion-item>
+        <button (click)="Add()"><ion-icon name="add"></ion-icon></button>
+       
+       <ion-card *ngIf="data">
+        <ion-item *ngFor="let att of anArray;">
+          <div class="card-title">{{att.value}}</div>
+        </ion-item>
+       </ion-card>
+    </ion-row>
+
+    <ion-row>
+        <ion-item>
+            <ion-label>I have read and agreed to the terms and conditions of using Artimer App</ion-label>
+            <ion-checkbox color="designer" checked="false"></ion-checkbox>
+          </ion-item>
+    </ion-row>
+    <button class="postProject" (click)="postProject()" ion-button color="client">Post Project</button>
+
+
+</ion-grid>
+</ion-content>
+  

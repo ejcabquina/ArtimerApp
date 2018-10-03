@@ -1,0 +1,13 @@
+<ion-content>
+    <ion-grid>
+        <ion-row id="login-logo">
+            <img alt="logo" (click)="gotoProjectList()" src="assets/imgs/logo.svg" > 
+        </ion-row>
+        
+        <ion-row id="btn-container">
+            <ion-col id="login-wrapper"><button class="login" (click) ="gotoLogin()" ion-button color="client" outline>LOG IN</button></ion-col>
+            <ion-col id="signup-wrapper"><button class="signup" (click) ="gotoRegister()" ion-button color="client">SIGN UP</button></ion-col>
+        </ion-row> 
+        
+    </ion-grid>  
+</ion-content>

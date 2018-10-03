@@ -1,0 +1,230 @@
+cpanel-client {
+    
+    #navlogo {
+        height: auto !important;
+        width: 50% !important;
+        position: relative;
+	    top: 50%;
+        transform: translateY(-50%);
+        left: 50%;
+        transform: translateX(-50%);
+        }
+
+ion-grid {
+    height: 100%;
+    display:flex !important ;
+    justify-content: center !important ;
+    align-items: center !important ;
+    flex-flow: column nowrap !important;
+
+
+
+    .col{
+        padding:0%;
+    }
+
+    .row{
+        padding: 0%;
+    }
+
+    #prof-container{
+        height: 20% !important;
+        width: 100% !important;
+        display:flex !important ;
+        justify-content: center !important ;
+        align-items: center !important ;
+        align-content: space-between !important ;
+        flex-flow: row wrap !important;
+
+        .prof-img-container{
+            height: auto !important;
+            display:flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            flex: 1, 1, 100% !important;
+
+            .prof-img{
+                height: 16vh;
+                width: 16vh;
+                padding: 1vh;
+                border: 0.65vh;
+                border-radius: 100%;
+                border-style: dashed;
+                border-color: #7c2417;
+                background-color: #fff;
+            }
+        }
+
+        .info-wrapper{
+            height:100%;
+            display:flex !important;
+            justify-content: flex-start !important;
+            align-items: center !important;
+            flex: 1, 1, 100% !important;
+            flex-flow: column nowrap !important;
+            font-size: 3vh;
+
+
+        }
+    }//#prof-container
+
+    #short-desc-wrapper{
+        margin-bottom: 2% !important;
+        height: 20% !important;
+        width: 100% !important;
+        display:flex !important ;
+        justify-content: center !important ;
+        align-items: center !important ;
+        align-content: space-between !important ;
+        flex-flow: row wrap !important;
+        padding:5%;
+        .center-short-desc{
+            height: 85%;
+            display:flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            flex: 1, 1, 100% !important;
+
+            .short-desc{
+                height: 80%;
+                display: flex !important;
+                justify-content: center !important;
+                align-items: center !important;
+                text-align: center !important;
+                overflow: hidden;
+            }
+        }
+    }
+
+    #sml-btn-container{
+        height: 10% !important;
+        width: 100% !important;
+        display:flex !important ;
+        justify-content: center !important ;
+        align-items: center !important ;
+        align-content: space-between !important ;
+        .center-col{
+            height: 70%;
+            display:flex !important;
+            justify-content: center!important;
+            align-items: center !important;
+            flex: 1, 1, 100% !important;
+        
+            .app-btn-icon{
+                height: 100% !important;
+            }
+        }
+    }
+
+
+    #lrg-btn-container{
+        height: 50% !important;
+        width: 100% !important;
+        display:flex !important ;
+        justify-content: center !important ;
+        align-items: center !important ;
+        align-content: center !important ;
+        flex-flow: row wrap !important;
+
+        .center-btn{
+            height: 60%;
+            display:flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            flex: 1, 1, 100% !important;
+            flex-flow: column nowrap !important;
+    
+            .app-btn-img{
+                height: 70% !important;
+                display:flex !important;
+                justify-content: center !important;
+                align-items: center !important;
+            }
+            
+            .btn-label {
+                height: 30% !important;
+                display:flex !important;
+                justify-content: center!important;
+                align-items: center !important;
+                font-size: 3vh !important;
+                text-align: center !important;
+            }
+        }
+
+        #post-btn-wrapper{
+            height: 30% !important;
+            width: 100% !important;
+            margin: 1%;
+            
+            #post-btn{
+                height: 80% !important;
+                width: 65% !important;
+                border-radius: 1vh;
+                font-size: 3vh;
+                margin:auto;
+            }
+        }
+    }
+
+    
+    #guide-container{
+        height: 5% !important;
+        width: 100% !important;
+        display:flex !important ;
+        align-items: center !important ;
+        flex-flow: row nowrap !important;
+
+        #guide-label-wrapper{
+            height:100%;
+            display:flex !important;
+            justify-content: flex-end !important;
+            align-items: center !important;
+            flex: 1, 1, 100% !important;
+                #guide-label{
+                    display:flex;
+                    flex-flow: row wrap !important;
+                    justify-content: flex-end !important;
+                    font-size: 2vh;
+                    padding-right: 10%;
+                    word-break: keep-all !important;
+                }
+        }
+
+        #guide-btn-wrapper{
+            height:100% !important; 
+            display:flex !important;
+            justify-content: flex-start !important;
+            align-items: center !important;
+            flex: 1, 1, 100% !important;
+            #guide-btn{
+                height: 70%;
+                width: 70% !important;
+                border-radius: 0.5vh;
+                font-size: 2vh;
+                display:flex !important;
+                justify-content: center !important;
+                align-items: center !important;
+                flex: 1, 1, 100% !important;
+                flex-flow: column wrap !important;
+   
+            }
+        }
+    }//guide-container
+
+
+    .client-style-text {
+        color: #7c2417;
+        font-size: 2vh;
+        text-align: center;
+        margin: 1%
+    }
+
+    .center-style{
+        display:flex !important;
+        justify-content: center !important;
+        align-content: center !important;
+    }
+
+} //ion-grid
+} //cpanel-client
+

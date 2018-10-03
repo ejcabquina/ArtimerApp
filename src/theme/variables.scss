@@ -1,0 +1,160 @@
+// Ionic Variables and Theming. For more info, please see:
+// http://ionicframework.com/docs/theming/
+
+// Font path is used to include ionicons,
+// roboto, and noto sans fonts
+$font-path: "../assets/fonts";
+
+
+// The app direction is used to include
+// rtl styles in your app. For more info, please see:
+// http://ionicframework.com/docs/theming/rtl-support/
+$app-direction: ltr;
+
+
+@import "ionic.globals";
+
+
+// Shared Variables
+// --------------------------------------------------
+// To customize the look and feel of this app, you can override
+// the Sass variables found in Ionic's source scss files.
+// To view all the possible Ionic variables, see:
+// http://ionicframework.com/docs/theming/overriding-ionic-variables/
+
+
+
+
+// Named Color Variables
+// --------------------------------------------------
+// Named colors makes it easy to reuse colors on various components.
+// It's highly recommended to change the default colors
+// to match your app's branding. Ionic uses a Sass map of
+// colors so you can add, rename and remove colors as needed.
+// The "primary" color is the only required color in the map.
+
+$colors: (
+  primary:    #488aff,
+  secondary:  #32db64,
+  danger:     #f53d3d,
+  light:      #f4f4f4,
+  dark:       #222,
+  client:     #7c2417,
+  designer:   #447d64,
+  white:       #FFFFFF
+);
+
+
+// App iOS Variables
+// --------------------------------------------------
+// iOS only Sass variables can go here
+
+
+
+
+// App Material Design Variables
+// --------------------------------------------------
+// Material Design only Sass variables can go here
+$text-input-md-background-color: #FFFFFF;
+$text-input-ios-background-color: #FFFFFF;
+
+
+$text-input-md-padding-top:	0.2vh;
+$text-input-md-padding-bottom:	0.2vh;
+$text-input-md-padding-right:	0.2vh;
+$text-input-md-padding-left: 0.2vh;
+$text-input-md-padding-media-bottom: 0.2vh;
+$text-input-md-padding-media-top: 0.2vh;
+$text-input-md-padding-start: 0.2vh;
+$text-input-md-padding-end: 0.2vh;
+
+$text-input-md-margin-bottom: 0.2vh;
+$text-input-md-margin-end: 0.2vh;
+$text-input-md-margin-left: 0.2vh;
+$text-input-md-margin-right:	0.2vh;	
+$text-input-md-margin-start: 0.2vh;
+$text-input-md-margin-top: 0.2vh;
+
+$content-padding: 5%;
+
+$text-input-ios-margin-bottom: 0.2vh;
+$text-input-ios-margin-end: 0.2vh;
+$text-input-ios-margin-left: 0.2vh;
+$text-input-ios-margin-right: 0.2vh;
+$text-input-ios-margin-start: 0.2vh;
+$text-input-ios-margin-top: 0.2vh;
+$text-input-ios-padding-bottom: 0.2vh;
+$text-input-ios-padding-end: 0.2vh;	
+$text-input-ios-padding-left: 0.2vh;
+$text-input-ios-padding-media-bottom: 0.2vh;
+$text-input-ios-padding-media-top: 0.2vh;
+$text-input-ios-padding-right: 0.2vh;
+$text-input-ios-padding-start: 0.2vh;
+$text-input-ios-padding-top: 0.2vh;
+
+$card-md-padding-top:	0.2vh;
+$card-md-padding-bottom:	0.2vh;
+$card-md-padding-right:	0.2vh;
+$card-md-padding-left: 0.2vh;
+$card-md-padding-media-bottom: 0.2vh;
+$card-md-padding-media-top: 0.2vh;
+$card-md-padding-start: 0.2vh;
+$card-md-padding-end: 0.2vh;
+
+$card-md-margin-bottom: 0.2vh;
+$card-md-margin-end: 0.2vh;
+$card-md-margin-left: 0.2vh;
+$card-md-margin-right:	0.2vh;	
+$card-md-margin-start: 0.2vh;
+$card-md-margin-top: 0.2vh;
+
+$content-padding: 5%;
+
+$card-ios-margin-bottom: 0.2vh;
+$card-ios-margin-end: 0.2vh;
+$card-ios-margin-left: 0.2vh;
+$card-ios-margin-right: 0.2vh;
+$card-ios-margin-start: 0.2vh;
+$card-ios-margin-top: 0.2vh;
+$card-ios-padding-bottom: 0.2vh;
+$card-ios-padding-end: 0.2vh;	
+$card-ios-padding-left: 0.2vh;
+$card-ios-padding-media-bottom: 0.2vh;
+$card-ios-padding-media-top: 0.2vh;
+$card-ios-padding-right: 0.2vh;
+$card-ios-padding-start: 0.2vh;
+$card-ios-padding-top: 0.2vh;
+
+
+
+
+// App Windows Variables
+// --------------------------------------------------
+// Windows only Sass variables can go here
+
+
+
+
+// App Theme
+// --------------------------------------------------
+// Ionic apps can have different themes applied, which can
+// then be future customized. This import comes last
+// so that the above variables are used and Ionic's
+// default are overridden.
+
+@import "ionic.theme.default";
+
+
+// Ionicons
+// --------------------------------------------------
+// The premium icon font for Ionic. For more info, please see:
+// http://ionicframework.com/docs/ionicons/
+
+@import "ionic.ionicons";
+
+
+// Fonts
+// --------------------------------------------------
+
+@import "roboto";
+@import "noto-sans";

@@ -1,0 +1,118 @@
+page-edit-profile {
+
+        ion-title{
+            .toolbar-title{
+                color: #7c2417;
+            }
+        }
+    
+
+    ion-grid{
+
+        ion-input  {
+            height: 5vh;
+            display: flex;
+            border: 1px solid #7c2417;
+            border-radius: 1vh;
+           
+            ::placeholder{
+                color: #afafaf !important;
+                font-size: 2vh;
+                border-bottom: 1px solid #afafaf;
+            }
+
+            .text-input{
+                margin-left: 1vh;
+            }
+        }
+
+        ion-textarea {
+            height: 5vh;
+            display: flex;
+            border: 1px solid #7c2417;
+            border-radius: 1vh;
+           
+            ::placeholder{
+                color: #7c2417 !important;
+                font-size: 2vh;
+                border-bottom: 1px solid #afafaf;
+            }
+
+            .text-input{
+                margin-left: 1vh;
+            }
+        }
+
+
+
+        #img-section{
+            display: flex !important;
+            align-content: center;
+            flex-flow: column nowrap;
+            justify-content: center !important;
+            align-items: center !important;
+            flex: 1, 1, 100% !important;
+            padding-top: 4vh;
+            
+            
+            .prof-img{
+            height: 16vh;
+            width: 16vh;
+            padding: 1vh;
+            border: 0.65vh;
+            border-radius: 100%;
+            border-style: dashed;
+            border-color: #7c2417;
+            background-color: #fff;
+            }
+
+            .change-photo{
+                text-align: center;
+            }
+        }
+        #info-section{
+            display: flex !important;
+            flex-flow: column nowrap;
+            padding-left: 3vh;
+            padding-right: 3vh;
+            padding-bottom: 2vh;
+
+            .long-text-input{
+                height: 12vh;
+                padding-top: 0.5vh;
+                align-items: flex-start;
+            }
+            
+        }
+        
+        #private-info-section{
+            display: flex !important;
+            flex-flow: column nowrap;
+            padding-left: 3vh;
+            padding-right: 3vh;
+            
+        }
+
+        #divider-row{
+            display: flex !important;
+            align-content: center;
+            flex-flow: column nowrap;
+            justify-content: center !important;
+            align-items: center !important;
+            height: 6vh;
+            border-top: 1px solid #afafaf;
+            border-bottom: 1px solid #afafaf;
+     
+            padding-top: 3vh;
+            padding-bottom: 3vh;
+            margin-top: 0.5vh;
+            margin-bottom: 0.5vh;
+
+            .divider-text{
+                font-size: 3vh;
+                text-align: center;
+            }
+        }
+    }
+
+}
