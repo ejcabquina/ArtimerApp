@@ -228,6 +228,7 @@ ion-grid {
             align-items: center !important;
             flex: 1, 1, 100% !important;
                 #guide-label{
+                    white-space: nowrap;
                     display:flex;
                     flex-flow: row wrap !important;
                     justify-content: flex-end !important;

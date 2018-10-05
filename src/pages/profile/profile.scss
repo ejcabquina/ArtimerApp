@@ -143,21 +143,37 @@ ion-grid {
 
     #rating-section{
         width: 100% !important;
-        display:flex !important ;
-        justify-content: center !important ;
-        align-items: center !important ;
-        align-content: space-between !important ;
-        .center-col{
-            height: 70%;
-            display:flex !important;
-            justify-content: center!important;
-            align-items: center !important;
-            flex: 1, 1, 100% !important;
-        
-            .app-btn-icon{
-                height: 100% !important;
+        display:flex !important;
+        flex-flow: column nowrap;
+        #rating-label-wrapper{
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+            align-content: center;
+            padding: 2vh;
+
+            .button {
+                height: 200px;
+                background: #fff;
+                color: #000;
+                margin-bottom: 4px;
+            }
+            .button-active {
+                height: 200px;
+                background: #ffc400;
+                color: #fff;
+            } 
+            .rating-text{
+                font-weight: bold;
+                font-size: 3vh;
             }
         }
+        #segment-wrapper{
+            display: flex;
+            flex-direction: row nowrap;
+           height:200px;
+        }
+
     }
 
 
@@ -168,13 +184,22 @@ ion-grid {
         flex-flow: row wrap !important;
 
         #gallery-title-wrapper{
-
             .gallery-title{
                 text-align: center;
                 padding-top: 1vh;
                 padding-bottom: 1vh;
                 font-size: 2.5vh;
                 font-weight: bold;
+            }
+        }
+
+        .gallery-img-container{
+            width: 33.333%;
+            .gallery-img-wrapper{
+                
+                .img-btn{
+                    padding: 1vh;
+                }
             }
         }
 

@@ -23,6 +23,7 @@ import { ProfilePage } from '../profile/profile';
   templateUrl: 'cpanel-client.html'
 })
 export class CPanelClientPage {
+  usertype:"acct-type";
   public items:any;
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: HttpClient) {
     this.getData();

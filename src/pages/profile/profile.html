@@ -6,6 +6,7 @@
 
 <ion-content>
 <ion-grid>
+
         <ion-card id="prof-container">
                 <ion-col class="prof-img-container" col-5>                  
                         <img alt="Profile Photo" (click)="gotoProfilePage()" class="prof-img" src="assets/imgs/profile/123.jpg">                 
@@ -30,8 +31,6 @@
                         <div id="locality">Quezon City, NCR</div>              
                 </ion-col>
         </ion-card>
-                
-                
                  
         <ion-card id="short-desc-wrapper">
                 <ion-row class="center-short-desc">
@@ -42,36 +41,70 @@
                 </ion-row>
         </ion-card>
 
-
-  <ion-card id="rating-section">
-        <ion-row>
-
-        </ion-row>
-
-        <ion-row>
-        <ion-segment [(ngModel)]="ratingType" color="primary">
-                <ion-segment-button value="Positive">
-                        Positive
-                </ion-segment-button>
-                <ion-segment-button value="Neutral">
-                        Neutral
-                </ion-segment-button>
-                <ion-segment-button value="Negative">
-                        Negative
-                </ion-segment-button>
-        </ion-segment>
-        </ion-row>
+        <ion-card id="rating-section">
+                <ion-row id="rating-label-wrapper" >
+                        <div class="rating-text">90% Positive Rating</div>
                         
-  </ion-card>
+                        <button (click)="toggleRating()" detail-none [ngClass]="{'button-active': button.open, 'button': button.close}" >
+                                <ion-icon name="arrow-forward" *ngIf="button.close"></ion-icon>
+                                <ion-icon name="arrow-down" *ngIf="button.open" ></ion-icon>
+
+                        </button>
+                        
+                </ion-row>
+        
+                <ion-row id="segment-wrapper">
+                <ion-segment id="" [(ngModel)]="ratingType" color="secondary">
+                        <ion-segment-button value="positive">
+                                Positive
+                        </ion-segment-button>
+                        <ion-segment-button value="neutral">
+                                Neutral
+                        </ion-segment-button>
+                        <ion-segment-button value="negative">
+                                Negative
+                        </ion-segment-button>
+                </ion-segment>
+                </ion-row>  
+
+                
+
+                <div id="rating-text" [ngSwitch]="'ratingType'">
+                        <div [style.display]="ratingType == 'positive' ? 'block' : 'none'">
+                        <ion-card>
+                                test
+                        </ion-card>
+                        </div>
+                
+                        <div [style.display]="ratingType == 'neutral' ? 'block' : 'none'">
+                        <ion-card>
+                                test
+                        </ion-card>
+                        </div>
+                
+                        <div [style.display]="ratingType == 'negative' ? 'block' : 'none'">
+                        <ion-card>
+                                test
+                        </ion-card>
+                        </div>
+                </div>
+
+                <!--rating comments-->
+                
+        
+        </ion-card>
+
+
+ 
 
   <ion-card id="gallery-section"> 
         <ion-card id="gallery-title-wrapper">
                 <div class="gallery-title">Sample Images</div>
         </ion-card>
 
-        <ion-col class="gallery-img-container" col-4>
+        <ion-col class="gallery-img-container" *ngFor="let item of items" col-4>
                 <div class="gallery-img-wrapper">
-                        <img class="img-btn" (click)="EnlargeImage()" src="" />
+                        <img class="img-btn" (click)="EnlargeImage()" src="{{item.url}}" />
                 </div>
         </ion-col>
   

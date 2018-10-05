@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController,AlertController } from 'ionic-angular';
 import { HomePage } from '../home/home';
 
 @Component({
@@ -10,7 +10,7 @@ export class ProjectPostFormPage {
 
   public anArray:any=[];
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, public alertCtrl: AlertController) {
 
   }
 
@@ -20,8 +20,13 @@ export class ProjectPostFormPage {
     this.navCtrl.push(HomePage);
   }
 
-  Confirmation(){
-
+  postProject() {
+    const alert = this.alertCtrl.create({
+      title: 'Project Posted!',
+      subTitle: 'Your Project has been posted! Please wait for updates on the notification page!',
+      buttons: ['OK']
+    });
+    alert.present();
   }
 
   goTo(){
