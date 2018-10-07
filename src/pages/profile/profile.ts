@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, SegmentButton, Segment } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 
 import { HttpClient, } from '@angular/common/http';
@@ -8,6 +8,8 @@ import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/filter';
+
+import { RatingPage } from '../rating/rating';
 
 /**
  * Generated class for the ProfilePage page.
@@ -23,7 +25,7 @@ import 'rxjs/add/operator/filter';
 })
 export class ProfilePage {
   public ratings: any[];
-  button: any;
+
   
   constructor(public navCtrl: NavController, public http: Http, public navParams: NavParams) {
     this.getRating();
@@ -38,17 +40,15 @@ export class ProfilePage {
     })
   }
 
-  toggleRating() {
-    this.button.open = this.button.close;
-  }
- 
-  toggleComment(i, j) {
-    this.ratings[i].children[j].open = !this.ratings[i].children[j].open;
+  gotoRatingPage(){
+    this.navCtrl.push(RatingPage);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfilePage');
   }
+
+ 
 
  
 }

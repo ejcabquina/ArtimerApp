@@ -151,29 +151,18 @@ ion-grid {
             justify-content: center;
             align-content: center;
             padding: 2vh;
-
-            .button {
-                height: 200px;
-                background: #fff;
-                color: #000;
-                margin-bottom: 4px;
-            }
-            .button-active {
-                height: 200px;
-                background: #ffc400;
-                color: #fff;
-            } 
+            
             .rating-text{
                 font-weight: bold;
                 font-size: 3vh;
+                padding-right: 2vh;
             }
         }
         #segment-wrapper{
             display: flex;
             flex-direction: row nowrap;
-           height:200px;
+            height:auto;
         }
-
     }
 
 
@@ -184,12 +173,16 @@ ion-grid {
         flex-flow: row wrap !important;
 
         #gallery-title-wrapper{
+            height: 8vh;
+            display:flex !important ;
+            align-items: center;
+            justify-content: center !important ;
             .gallery-title{
                 text-align: center;
                 padding-top: 1vh;
                 padding-bottom: 1vh;
-                font-size: 2.5vh;
                 font-weight: bold;
+                font-size: 3vh;
             }
         }
 

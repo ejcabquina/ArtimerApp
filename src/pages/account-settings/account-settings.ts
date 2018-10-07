@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { AuthService } from '../../providers/auth-service/auth-service';
+import { NavController, App, LoadingController, ToastController } from 'ionic-angular';
+import { HomePage } from '../home/home';
+
+
 
 /**
  * Generated class for the AccountSettingsPage page.
@@ -8,14 +12,29 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-account-settings',
   templateUrl: 'account-settings.html',
 })
 export class AccountSettingsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  loading: any;
+  isLoggedIn: boolean = false;
+
+  constructor(public app: App, public navCtrl: NavController, public authService: AuthService, public loadingCtrl: LoadingController, private toastCtrl: ToastController) {
+    if(localStorage.getItem("token")) {
+      this.isLoggedIn = true;
+    }
+  
+  }
+
+  logout() {
+    this.authService.logout().then((result) => {
+      this.loading.dismiss();
+      let nav = this.app.getRootNav();
+      nav.setRoot(HomePage);
+    }, (err) => {
+    });
   }
 
   ionViewDidLoad() {

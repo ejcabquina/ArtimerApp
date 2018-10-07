@@ -5,7 +5,7 @@
     </ion-row>
 
     
-
+    <form (submit)="doSignup()">
     <ion-row>
             <ion-input class="client-style" type="text" placeholder="First Name" ></ion-input>
         
@@ -13,17 +13,17 @@
     </ion-row>
           
     <ion-row>
-            <ion-input class="client-style" type="email" name="email" placeholder="Email"></ion-input>
-            <ion-input class="client-style" type="email" name="email" placeholder="Re-enter Email"></ion-input>
+            <ion-input class="client-style" type="email" [(ngModel)]="regData.mail.value" name="mail" placeholder="Email"></ion-input>
+            <ion-input class="client-style" type="email" name="confirm" placeholder="Re-enter Email"></ion-input>
     </ion-row>
           
     <ion-row>
-            <ion-input class="client-style" placeholder="Username" type="user"></ion-input>
+            <ion-input class="client-style" [(ngModel)]="regData.name.value" name="name" type="text" placeholder="Username"></ion-input>
     </ion-row>
 
     <ion-row>
-            <ion-input class="client-style" placeholder="Password" type="password"></ion-input>
-            <ion-input class="client-style" placeholder="Confirm Password" type="password"></ion-input>
+            <ion-input class="client-style" placeholder="Password" [(ngModel)]="regData.pass.value" name="pass"  type="password"></ion-input>
+            <ion-input class="client-style" placeholder="Confirm Password" type="pass"></ion-input>
     </ion-row>
 
     <ion-row>
@@ -39,30 +39,30 @@
     <ion-row>
             <ion-item>
                 <ion-label>Birthdate</ion-label>
-                <ion-select class="client-style" [(ngModel)]="mon">
+                <ion-select class="client-style">
                   <ion-option value="Client">Client</ion-option>
                   <ion-option value="Designer">Designer</ion-option>
                 </ion-select>
 
-                <ion-select class="client-style" [(ngModel)]="day">
+                <ion-select class="client-style">
                         <ion-option value="Client">Client</ion-option>
                         <ion-option value="Designer">Designer</ion-option>
                 </ion-select>
 
-                <ion-select class="client-style" [(ngModel)]="yr">
+                <ion-select class="client-style">
                         <ion-option value="Client">Client</ion-option>
                         <ion-option value="Designer">Designer</ion-option>
                 </ion-select>
               </ion-item>
     </ion-row>
-    <button class="signup" (click)="register()" ion-button color="client">CONFIRM</button>
+    <button class="signup" block type="submit" ion-button color="client">CONFIRM</button>
     
       
     
         <div class="center-style"><p class="client-style-text">Already have an account?</p> </div>
 
         <button class="login" (click) ="gotoLogin()" ion-button color="client" outline>SIGN IN</button>
-
+</form> <!--doSignup()-->
 
 
 </ion-grid>

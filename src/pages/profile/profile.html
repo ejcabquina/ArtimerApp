@@ -44,54 +44,13 @@
         <ion-card id="rating-section">
                 <ion-row id="rating-label-wrapper" >
                         <div class="rating-text">90% Positive Rating</div>
-                        
-                        <button (click)="toggleRating()" detail-none [ngClass]="{'button-active': button.open, 'button': button.close}" >
-                                <ion-icon name="arrow-forward" *ngIf="button.close"></ion-icon>
-                                <ion-icon name="arrow-down" *ngIf="button.open" ></ion-icon>
-
-                        </button>
-                        
+                           
                 </ion-row>
-        
-                <ion-row id="segment-wrapper">
-                <ion-segment id="" [(ngModel)]="ratingType" color="secondary">
-                        <ion-segment-button value="positive">
-                                Positive
-                        </ion-segment-button>
-                        <ion-segment-button value="neutral">
-                                Neutral
-                        </ion-segment-button>
-                        <ion-segment-button value="negative">
-                                Negative
-                        </ion-segment-button>
-                </ion-segment>
-                </ion-row>  
 
-                
-
-                <div id="rating-text" [ngSwitch]="'ratingType'">
-                        <div [style.display]="ratingType == 'positive' ? 'block' : 'none'">
-                        <ion-card>
-                                test
-                        </ion-card>
-                        </div>
-                
-                        <div [style.display]="ratingType == 'neutral' ? 'block' : 'none'">
-                        <ion-card>
-                                test
-                        </ion-card>
-                        </div>
-                
-                        <div [style.display]="ratingType == 'negative' ? 'block' : 'none'">
-                        <ion-card>
-                                test
-                        </ion-card>
-                        </div>
-                </div>
-
+                <ion-row (click)="gotoRatingPage()">
+                        <div class="rating-text">RATING!</div>
+                </ion-row>
                 <!--rating comments-->
-                
-        
         </ion-card>
 
 

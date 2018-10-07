@@ -38,12 +38,14 @@ page-booking-status {
             display: flex !important;
             justify-content: center !important;
             align-content: center !important;
-            
-
             .img{
-                height: 11vh;
-                width: 11vh;
-                border-radius: 50vh;
+                height: 12vh;
+                width: 12vh;
+                border: 0.4vh;
+                border-radius: 100%;
+                border-style: dashed;
+                border-color: #7c2417;
+                padding: 0.7vh;
             }
         }
 
@@ -57,6 +59,7 @@ page-booking-status {
             .project-name{
                 font-size: 2.3vh;
                 color: #7c2417;
+                font-weight: bold;
             }
             
             .project-type{
@@ -97,7 +100,7 @@ page-booking-status {
             
             .status-indicator{
                 font-size: 2vh;
-             
+                font-weight: bold;
             }
         }
 

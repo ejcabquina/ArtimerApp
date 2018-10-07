@@ -16,9 +16,9 @@ import { ProjectDetailsViewPage } from '../project-details-view/project-details-
 export class ProjectListPage {
   public items:any;
   constructor(public navCtrl: NavController, public http: HttpClient) {
-    this.getData();
+    this.getProject();
   }
-  getData() {
+  getProject() {
     let url='https://jsonplaceholder.typicode.com/photos';
     let data: Observable<any> = this.http.get(url);
     data.subscribe(result => {

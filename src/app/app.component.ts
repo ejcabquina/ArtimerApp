@@ -17,6 +17,7 @@ import { MessengerPage } from '../pages/messenger/messenger';
 import { NotificationPage } from '../pages/notification/notification';
 import { CreativeBriefFaqPage } from '../pages/creative-brief-faq/creative-brief-faq';
 import { ProfilePage } from '../pages/profile/profile';
+import { RatingPage } from '../pages/rating/rating';
 
 
 

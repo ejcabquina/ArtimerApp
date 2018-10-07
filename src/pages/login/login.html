@@ -7,12 +7,14 @@
             <img id="login-logo" alt="logo" src="assets/imgs/logo.svg" > 
         </ion-row>
 
+        <form (submit)="doLogin()">
+
         <ion-row>
-            <ion-input class="user" type="text" placeholder="Email" name="name"   required></ion-input>
+            <ion-input class="user" [(ngModel)]="loginData.name" name="name" type="text" placeholder="Username"></ion-input>
         </ion-row>
 
         <ion-row>
-            <ion-input class="pass" type="password" placeholder="Password" name="password" required></ion-input>  
+            <ion-input class="pass" [(ngModel)]="loginData.pass" name="pass" type="password" placeholder="Password"></ion-input>  
         </ion-row>
 
         <ion-row>
@@ -22,9 +24,11 @@
         </ion-row>
 
         <ion-row id="btn-container">
-            <ion-col id="login-wrapper"><button class="login" (click) ="login()"   ion-button color="client" outline>LOG IN</button></ion-col>
+            <ion-col id="login-wrapper"><button class="login" type="submit" ion-button color="client" outline>LOG IN</button></ion-col>
             <ion-col id="signup-wrapper"><button class="signup" (click) ="gotoRegister()" ion-button color="client">SIGN UP</button></ion-col>
         </ion-row> 
+
+    </form><!--doLogin-->
 
         <ion-row>
                 <ion-col col-3></ion-col>
@@ -36,8 +40,6 @@
                 <ion-col><img class="fb-btn" click="" src="assets/imgs/fb-btn.svg"></ion-col>
                 <ion-col><img class="google-btn" click="" src="assets/imgs/google-btn.svg"></ion-col>
         </ion-row>
-
-
 
     </ion-grid>
 </ion-content>
