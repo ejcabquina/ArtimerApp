@@ -28,18 +28,19 @@
     <ion-row id="info-section" >
 
       <div *ngFor="let name of displayName">
-        <ion-label>First Name:</ion-label> <div class="previous-value">{{name.given}} </div>
-        <ion-input type="text" placeholder="Juan/John" [(ngModel)]="editProfileData.field_name.given" name="given"></ion-input>
-        <ion-label>Last Name:</ion-label> <div class="previous-value">{{name.family}}</div>
-        <ion-input type="text" placeholder="Dela Cruz/Doe" [(ngModel)]="editProfileData.field_name.family" name="family"></ion-input>
+        <ion-label>First Name:</ion-label> 
+        <ion-input type="text" placeholder="{{name.given}}" [(ngModel)]="editProfileData.field_name.given" name="given"></ion-input>
+        <ion-label>Last Name:</ion-label> 
+        <ion-input type="text" placeholder="{{name.family}}" [(ngModel)]="editProfileData.field_name.family" name="family"></ion-input>
       </div>
 
-
-        <ion-label>City:</ion-label><div class="previous-value"></div>
-        <ion-input type="text" placeholder="Quezon City/New York City" [(ngModel)]="editProfileData.field_address.locality" name="city"></ion-input>
+      <div *ngFor="let info of displayInfo">
+        <ion-label>City:</ion-label>
+        <ion-input type="text" placeholder="{{info.locality}}" [(ngModel)]="editProfileData.field_address.locality" name="city"></ion-input>
         <ion-label>State/Region:</ion-label><div class="previous-value"> </div>
-        <ion-input type="text" placeholder="NCR/California" [(ngModel)]="editProfileData.field_address.administrative_area"  name="area"></ion-input>
-  
+        <ion-input type="text" placeholder="{{info.administrative_area}}" [(ngModel)]="editProfileData.field_address.administrative_area"  name="area"></ion-input>
+      </div>
+
        <ion-label>Short Description:</ion-label>
         <ion-textarea *ngFor="let desc of displayDesc" class='long-text-input' type="text" maxlength="150" rows="4" wrap="hard" placeholder="{{desc.processed}}" [(ngModel)]="editProfileData.field_short_description.value" name="short_desc"></ion-textarea>
       
