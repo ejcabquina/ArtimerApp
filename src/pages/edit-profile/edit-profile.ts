@@ -73,6 +73,7 @@ export class EditProfilePage {
         this.displayEmail = data.mail;
         console.log('info editprofile',this.displayInfo);
         console.log('name editprofile',this.displayName);
+        console.log('mobile editprofile',this.displayMobile);
         console.log('img editprofile',this.displayImage);
         console.log('email editprofile',this.displayEmail);
         console.log('desc editprofile',this.displayDesc);

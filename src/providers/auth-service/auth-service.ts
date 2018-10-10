@@ -68,6 +68,7 @@ export class AuthService {
 
   assignDisplay(){ //preloading files on auth
     this.loadUserData().subscribe(data => {
+      console.log('from assign data raw',data)
       this.displayImg = data.user_picture;
       this.displayName = data.field_name;
       this.displayInfo = data.field_address; 
