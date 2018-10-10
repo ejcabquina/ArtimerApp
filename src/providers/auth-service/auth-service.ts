@@ -18,6 +18,7 @@ export class AuthService {
   public displayInfo: string;
   public displayDesc: string;
   public displayEmail: string;
+  public displayMobile: string;
 
 
   constructor(public http: Http, public storage: Storage) {
@@ -70,11 +71,14 @@ export class AuthService {
       this.displayImg = data.user_picture;
       this.displayName = data.field_name;
       this.displayInfo = data.field_address; 
+      this.displayMobile = data.field_mobile;
       this.displayDesc = data.field_short_description; 
       this.displayEmail = data.mail;
+      
       console.log('displayinfo',this.displayInfo);
       console.log('displayName',this.displayName);
       console.log('displayimage',this.displayImg);
+      console.log('displaymobile',this.displayMobile);
       console.log('displaymail',this.displayEmail);
       console.log('displaydesc',this.displayDesc);
     });

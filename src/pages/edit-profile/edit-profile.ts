@@ -56,6 +56,7 @@ export class EditProfilePage {
   displayInfo: any;
   displayDesc: any;
   displayEmail: any;
+  displayMobile: any;
 
   constructor( public http: HttpClient, public navCtrl: NavController, public navParams: NavParams,  public actionSheetCtrl: ActionSheetController, public loadingCtrl: LoadingController,
     public formBuilder: FormBuilder, public camera: Camera, public authService: AuthService) {
@@ -68,6 +69,7 @@ export class EditProfilePage {
         this.displayImage = data.user_picture;
         this.displayName = data.field_name;
         this.displayInfo = data.field_address; 
+        this.displayMobile = data.field_mobile;
         this.displayDesc = data.field_short_description; 
         this.displayEmail = data.mail;
         console.log('info editprofile',this.displayInfo);

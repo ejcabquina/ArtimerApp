@@ -17,6 +17,10 @@ export class RegisterPage {
         "middle_name": "",
         "family_name": ""
       }],
+    "field_mobile": 
+      [{
+        "value": ""
+      }],
     "field_short_description":
       [{
         "value": "",
