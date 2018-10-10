@@ -7,6 +7,8 @@ import { HttpClientModule } from '@angular/common/http'
 import { HttpModule } from '@angular/http';
 import { AuthService } from '../providers/auth-service/auth-service';
 import { Camera } from '@ionic-native/camera';
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
+import { File } from '@ionic-native/file';
 
 import { IonicStorageModule } from '@ionic/storage';
 
@@ -82,10 +84,14 @@ import { RatingPage } from '../pages/rating/rating';
     RatingPage
   ],
   providers: [
-    Camera,
+    AuthService,
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}, AuthService
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    FileTransfer,
+    FileTransferObject,
+    File,
+    Camera
   ]
 })
 export class AppModule {}

@@ -27,21 +27,40 @@ import { AuthService } from '../../providers/auth-service/auth-service';
 })
 export class CPanelPage {
 
-  displayImg:string;
-  displayName:string;
-  displayInfo:string;
-  displayEmail:string;
-  displayDesc:string;
+  displayImage: any;
+  displayName: any;
+  displayInfo: any;
+  displayDesc: any;
+  displayEmail: any;
+  displayMobile: any;
+
 
   
   constructor( public navCtrl: NavController, public navParams: NavParams, public http: HttpClient, private authService: AuthService) {
     if(!localStorage.getItem('loggedin_token')) {
       authService.isLoggedIn = false;
     }
-    
-  }
-
-
+    this.readUserfromAuth();
+    }
+  
+    readUserfromAuth(){
+      this.authService.loadUserData().subscribe(data => {
+        console.log('data',data);
+        this.displayImage = data.user_picture;
+        this.displayName = data.field_name;
+        this.displayInfo = data.field_address; 
+        this.displayMobile = data.field_mobile;
+        this.displayDesc = data.field_short_description; 
+        this.displayEmail = data.mail;
+        console.log('info editprofile',this.displayInfo);
+        console.log('name editprofile',this.displayName);
+        console.log('mobile editprofile',this.displayMobile);
+        console.log('img editprofile',this.displayImage);
+        console.log('email editprofile',this.displayEmail);
+        console.log('desc editprofile',this.displayDesc);
+      });
+    }
+  
   gotoHomePage() {
     this.navCtrl.push(HomePage);
   }

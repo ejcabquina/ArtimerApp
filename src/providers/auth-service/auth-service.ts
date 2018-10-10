@@ -194,6 +194,7 @@ storeUserID(uid){
   logout(){
     return new Promise((resolve, reject) => {
         let headers = new Headers();
+        headers.append('Authorization', 'Basic YWRtaW46YWRtaW4=');
         headers.append('X-CSRF-Token', localStorage.getItem('loggedin_token'));
 
         this.http.post(this.apiUrl+'/user/logout',{}, {headers: headers, withCredentials:true})

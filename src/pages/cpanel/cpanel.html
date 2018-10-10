@@ -27,10 +27,18 @@
                                         January 2018
                                 </div>
                         </div>
-                        <div id="locality" *ngFor="let info of displayInfo">{{info.locality}}, {{info.administrative_area}}</div>
-                        <div id="email" *ngFor="let mail of displayEmail">
+
+                        
+                        <div *ngFor="let mail of displayEmail">
                                 {{mail.value}}
                         </div>
+                                        
+                        <div *ngFor="let mobile of displayMobile">
+                                {{mobile.value}}
+                        </div>
+                        
+                        <div id="locality" *ngFor="let info of displayInfo">{{info.locality}}, {{info.administrative_area}}</div>
+                        
 
                         
                 </ion-col>

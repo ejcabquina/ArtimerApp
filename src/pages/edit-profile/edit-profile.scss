@@ -118,6 +118,21 @@ page-edit-profile {
                 text-align: center;
             }
         }
+
+        #button-container{
+            display: flex !important;
+            align-content: center !important;
+            flex-flow: column nowrap;
+            justify-content: center !important;
+            align-items: center !important;
+            padding-top: 2vh;
+
+            .save-button{
+                border-radius: 3vh;
+                height: 6vh;
+                width: 69%;
+            }
+        }
     }
 
 }
