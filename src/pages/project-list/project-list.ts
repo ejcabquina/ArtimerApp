@@ -18,13 +18,14 @@ export class ProjectListPage {
   constructor(public navCtrl: NavController, public http: HttpClient) {
     this.getProject();
   }
+
   getProject() {
-    let url='https://jsonplaceholder.typicode.com/photos';
+    let url='https://jsonplaceholder.typicode.com/photos/?results=10';
     let data: Observable<any> = this.http.get(url);
     data.subscribe(result => {
       this.items = result;
       console.log(result);
-    })
+    });
   }
 
   gotoHomePage() {

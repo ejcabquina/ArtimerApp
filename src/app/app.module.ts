@@ -6,6 +6,9 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { HttpClientModule } from '@angular/common/http'
 import { HttpModule } from '@angular/http';
 import { AuthService } from '../providers/auth-service/auth-service';
+import { Camera } from '@ionic-native/camera';
+
+import { IonicStorageModule } from '@ionic/storage';
 
 
 import { MyApp } from './app.component';
@@ -17,8 +20,7 @@ import { ProjectListPage } from '../pages/project-list/project-list';
 import { ProjectDetailsViewPage } from '../pages/project-details-view/project-details-view';
 import { ProjectPostFormPage } from '../pages/project-post-form/project-post-form';
 import { RegisterPage } from '../pages/register/register';
-import { CPanelDesignerPage } from '../pages/cpanel-designer/cpanel-designer';
-import { CPanelClientPage } from '../pages/cpanel-client/cpanel-client';
+import { CPanelPage } from '../pages/cpanel/cpanel';
 import { EditProfilePage } from '../pages/edit-profile/edit-profile';
 import { BookingStatusPage } from '../pages/booking-status/booking-status';
 import { BookingStatusViewPage } from '../pages/booking-status-view/booking-status-view';
@@ -29,7 +31,6 @@ import { NotificationPage } from '../pages/notification/notification';
 import { CreativeBriefFaqPage } from '../pages/creative-brief-faq/creative-brief-faq';
 import { ProfilePage } from '../pages/profile/profile';
 import { RatingPage } from '../pages/rating/rating';
-import { RestProvider } from '../providers/rest/rest';
 
 
 
@@ -42,8 +43,7 @@ import { RestProvider } from '../providers/rest/rest';
     ProjectDetailsViewPage,
     ProjectPostFormPage,
     RegisterPage,
-    CPanelDesignerPage,
-    CPanelClientPage,
+    CPanelPage,
     EditProfilePage,
     BookingStatusPage,
     BookingStatusViewPage,
@@ -57,7 +57,7 @@ import { RestProvider } from '../providers/rest/rest';
   ],
   imports: [
     BrowserModule,HttpClientModule, HttpModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp), IonicStorageModule.forRoot()
     
   ],
   bootstrap: [IonicApp],
@@ -69,8 +69,7 @@ import { RestProvider } from '../providers/rest/rest';
     ProjectDetailsViewPage,
     ProjectPostFormPage,
     RegisterPage,
-    CPanelDesignerPage,
-    CPanelClientPage,
+    CPanelPage,
     EditProfilePage,
     BookingStatusPage,
     BookingStatusViewPage,
@@ -83,10 +82,10 @@ import { RestProvider } from '../providers/rest/rest';
     RatingPage
   ],
   providers: [
+    Camera,
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}, AuthService,
-    RestProvider
+    {provide: ErrorHandler, useClass: IonicErrorHandler}, AuthService
   ]
 })
 export class AppModule {}

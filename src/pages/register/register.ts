@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service/auth-service';
+import { EditProfilePage } from '../edit-profile/edit-profile';
 
 @Component({
   selector: 'page-register',
@@ -10,51 +11,34 @@ export class RegisterPage {
 
   loading: any;
   regData = { 
-    "name": { "value": "" } , 
-    "pass": { "value": "" } , 
-    "mail": { "value": "" } 
+    "field_name": 
+      [{
+        "given_name": "",
+        "middle_name": "",
+        "family_name": ""
+      }],
+    "field_short_description":
+      [{
+        "value": "",
+        "format": "",
+        "processed": ""
+      }],
+    "name": { "value": "" }, 
+    "pass": { "value": "" }, 
+    "mail": { "value": "" }
   };
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthService, public loadingCtrl: LoadingController, private toastCtrl: ToastController) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthService) {
+  
+  }
 
-  doSignup() {
-    this.showLoader();
+  doRegister() {
+    
     this.authService.register(this.regData).then((result) => {
-      this.loading.dismiss();
-      this.navCtrl.pop();
+      this.navCtrl.popToRoot();
     }, (err) => {
-      this.loading.dismiss();
-      this.presentToast(err);
-      this.CheckregData();
+     
     });
-  }
-
-
-  CheckregData(){
-    console.log(this.regData);
-  }
-
-  showLoader(){
-    this.loading = this.loadingCtrl.create({
-        content: 'Authenticating...'
-    });
-
-    this.loading.present();
-  }
-
-  presentToast(msg) {
-    let toast = this.toastCtrl.create({
-      message: msg,
-      duration: 3000,
-      position: 'bottom',
-      dismissOnPageChange: true
-    });
-
-    toast.onDidDismiss(() => {
-      console.log('Dismissed toast');
-    });
-
-    toast.present();
   }
 
 }

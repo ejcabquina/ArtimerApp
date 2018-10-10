@@ -1,15 +1,12 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-
-import { HttpClient, } from '@angular/common/http';
+import { Storage }  from '@ionic/storage';
 import { Http } from '@angular/http';
 
-import { Observable } from 'rxjs/Rx';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/filter';
 
 import { RatingPage } from '../rating/rating';
+import { AuthService } from '../../providers/auth-service/auth-service';
+
 
 /**
  * Generated class for the ProfilePage page.
@@ -18,27 +15,41 @@ import { RatingPage } from '../rating/rating';
  * Ionic pages and navigation.
  */
 
+
 @IonicPage()
 @Component({
   selector: 'page-profile',
   templateUrl: 'profile.html',
 })
 export class ProfilePage {
-  public ratings: any[];
 
+  displayImage: any;
+  displayName: any;
+  displayInfo: any;
+  displayDesc: any;
+  displayEmail: any;
   
-  constructor(public navCtrl: NavController, public http: Http, public navParams: NavParams) {
-    this.getRating();
+
+  constructor(public navCtrl: NavController, public http: Http, public storage: Storage, public navParams: NavParams, private authService: AuthService) {
+    this.getuserdata();
+    
+  }
+  getuserdata() {
+    this.authService.loadUserData().subscribe(data =>{
+      console.log('from profile', data);
+      this.displayImage = data.user_picture;
+      this.displayName = data.field_name;
+      this.displayInfo = data.field_address; 
+      this.displayDesc = data.field_short_description; 
+      this.displayEmail = data.mail;
+      console.log('displayinfo',this.displayInfo);
+      console.log('displayName',this.displayName);
+      console.log('displayimage',this.displayImage);
+      console.log('displaymail',this.displayEmail);
+      console.log('displaydesc',this.displayDesc);
+    });
   }
 
-  getRating() {
-    let url='https://jsonplaceholder.typicode.com/comments';
-    let data: Observable<any> = this.http.get(url);
-    data.subscribe(result => {
-      this.ratings = result;
-      console.log(result);
-    })
-  }
 
   gotoRatingPage(){
     this.navCtrl.push(RatingPage);

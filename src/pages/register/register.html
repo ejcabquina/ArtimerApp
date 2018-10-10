@@ -5,11 +5,11 @@
     </ion-row>
 
     
-    <form (submit)="doSignup()">
+    <form (submit)="doRegister()">
     <ion-row>
-            <ion-input class="client-style" type="text" placeholder="First Name" ></ion-input>
+            <ion-input class="client-style" type="text" placeholder="First Name" [(ngModel)]="regData.field_name.given" name="given"  ></ion-input>
         
-            <ion-input class="client-style" type="text" placeholder="Last Name" ></ion-input>
+            <ion-input class="client-style" type="text" placeholder="Last Name" [(ngModel)]="regData.field_name.family" name="family" ></ion-input>
     </ion-row>
           
     <ion-row>
@@ -27,34 +27,11 @@
     </ion-row>
 
     <ion-row>
-            <ion-item>
-                <ion-label>Account Type</ion-label>
-                <ion-select class="client-style">
-                  <ion-option value="Client">Client</ion-option>
-                  <ion-option value="Designer">Designer</ion-option>
-                </ion-select>
-              </ion-item>
+        <ion-label>Short Description:</ion-label>
+        <ion-textarea class='long-text-input' type="text" maxlength="150" rows="4" wrap="hard" placeholder="Short Description about you(your company)" [(ngModel)]="regData.field_short_description.value" name="field_short_description"></ion-textarea>
+      
     </ion-row>
 
-    <ion-row>
-            <ion-item>
-                <ion-label>Birthdate</ion-label>
-                <ion-select class="client-style">
-                  <ion-option value="Client">Client</ion-option>
-                  <ion-option value="Designer">Designer</ion-option>
-                </ion-select>
-
-                <ion-select class="client-style">
-                        <ion-option value="Client">Client</ion-option>
-                        <ion-option value="Designer">Designer</ion-option>
-                </ion-select>
-
-                <ion-select class="client-style">
-                        <ion-option value="Client">Client</ion-option>
-                        <ion-option value="Designer">Designer</ion-option>
-                </ion-select>
-              </ion-item>
-    </ion-row>
     <button class="signup" block type="submit" ion-button color="client">CONFIRM</button>
     
       

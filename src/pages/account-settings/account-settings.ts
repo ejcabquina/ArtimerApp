@@ -1,7 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../providers/auth-service/auth-service';
-import { NavController, App, LoadingController, ToastController } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
+import { Http } from '@angular/http';
+
+
 import { HomePage } from '../home/home';
+import { Storage }  from '@ionic/storage';
+
 
 
 
@@ -16,26 +21,30 @@ import { HomePage } from '../home/home';
   selector: 'page-account-settings',
   templateUrl: 'account-settings.html',
 })
-export class AccountSettingsPage {
+export class AccountSettingsPage implements OnInit {
 
-  loading: any;
-  isLoggedIn: boolean = false;
+  constructor(public http: Http, public navCtrl: NavController, private authService: AuthService, public storage: Storage) {
+    
+ }
 
-  constructor(public app: App, public navCtrl: NavController, public authService: AuthService, public loadingCtrl: LoadingController, private toastCtrl: ToastController) {
-    if(localStorage.getItem("token")) {
-      this.isLoggedIn = true;
-    }
-  
-  }
+ ngOnInit(){
 
-  logout() {
-    this.authService.logout().then((result) => {
-      this.loading.dismiss();
-      let nav = this.app.getRootNav();
-      nav.setRoot(HomePage);
-    }, (err) => {
-    });
-  }
+ }
+
+ 
+ logout() {
+  this.navCtrl.setRoot(HomePage);
+  this.navCtrl.push(HomePage);
+  this.authService.logoutCredentialsCheck();
+  this.authService.logout().then((result) => {
+    this.navCtrl.setRoot(HomePage);
+    this.navCtrl.push(HomePage);
+    this.authService.logoutCredentialsCheck();
+  }, (err) => {
+    /** put error here */
+  });
+}
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AccountSettingsPage');

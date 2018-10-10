@@ -7,15 +7,15 @@
 <ion-content>
 <ion-grid>
         <ion-card id="prof-container">
-                <ion-col class="prof-img-container" col-5>
+                <ion-col class="prof-img-container" col-5 >
                         
-                        <img alt="Profile Photo" (click)="gotoProfilePage()" class="prof-img" src="assets/imgs/profile/123.jpg">    
+                        <img alt="Profile Photo" (click)="gotoProfilePage()" class="prof-img"  *ngFor="let img of displayImage" src="{{img.url}}">    
                         
                 </ion-col>
 
-                <ion-col class="info-wrapper" col-7>
-                        <div id="display-name">
-                                Hi Juan Dela Cruz!
+                <ion-col class="info-wrapper" col-7 >
+                        <div id="display-name" *ngFor="let name of displayName">
+                                {{name.given}}{{name.family}}
                         </div>
 
                         <div id="sub-info-wrapper">
@@ -27,11 +27,10 @@
                                         January 2018
                                 </div>
                         </div>
-                        <div id="email">
-                                ejcabquina@gmail.com
+                        <div id="locality" *ngFor="let info of displayInfo">{{info.locality}}, {{info.administrative_area}}</div>
+                        <div id="email" *ngFor="let mail of displayEmail">
+                                {{mail.value}}
                         </div>
-
-                        <div id="locality">Quezon City, NCR</div>
 
                         
                 </ion-col>
@@ -42,8 +41,8 @@
         <ion-card id="short-desc-wrapper">
                 <ion-row class="center-short-desc">
                 <div class="short-desc-title">Short Description</div>
-                        <div class="short-desc">
-                                The most popular industrial group ever, and largely responsible for bringing the music to a mass audience.
+                        <div class="short-desc" *ngFor="let desc of displayDesc">
+                                {{desc.processed}}
                         </div>
                 </ion-row>
         </ion-card>

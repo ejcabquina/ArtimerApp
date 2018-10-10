@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Rx';
@@ -17,25 +17,28 @@ import { MessengerPage } from '../messenger/messenger';
 import { NotificationPage } from '../notification/notification';
 import { CreativeBriefFaqPage } from '../creative-brief-faq/creative-brief-faq';
 import { ProfilePage } from '../profile/profile';
+import { AuthService } from '../../providers/auth-service/auth-service';
+
+
 
 @Component({
-  selector: 'page-cpanel-client',
-  templateUrl: 'cpanel-client.html'
+  selector: 'page-cpanel',
+  templateUrl: 'cpanel.html'
 })
-export class CPanelClientPage {
-  usertype:"acct-type";
-  public items:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http: HttpClient) {
-    this.getData();
-  }
+export class CPanelPage {
 
-  getData() {
-    let url='';
-    let data: Observable<any> = this.http.get(url);
-    data.subscribe(result => {
-      this.items = result;
-      console.log(result);
-    })
+  displayImg:string;
+  displayName:string;
+  displayInfo:string;
+  displayEmail:string;
+  displayDesc:string;
+
+  
+  constructor( public navCtrl: NavController, public navParams: NavParams, public http: HttpClient, private authService: AuthService) {
+    if(!localStorage.getItem('loggedin_token')) {
+      authService.isLoggedIn = false;
+    }
+    
   }
 
 

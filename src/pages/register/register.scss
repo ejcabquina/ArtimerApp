@@ -47,6 +47,12 @@ page-register {
         align-content: center !important;
     }
 
+    .long-text-input{
+        height: 12vh;
+        padding-top: 0.5vh;
+        align-items: flex-start;
+    }
+
    
     .login {
         height: 6vh !important;
@@ -57,6 +63,8 @@ page-register {
         display: inline-block;
         font-size: 2vh;
     }
+
+    
   
         .signup {
         height: 6vh !important;
