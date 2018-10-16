@@ -18,6 +18,7 @@ import { NotificationPage } from '../notification/notification';
 import { CreativeBriefFaqPage } from '../creative-brief-faq/creative-brief-faq';
 import { ProfilePage } from '../profile/profile';
 import { AuthService } from '../../providers/auth-service/auth-service';
+import { ProjectListPage } from '../project-list/project-list';
 
 
 
@@ -28,8 +29,11 @@ import { AuthService } from '../../providers/auth-service/auth-service';
 export class CPanelPage {
 
   displayImage: any;
-  displayName: any;
-  displayInfo: any;
+  displayFirstName: any;
+  displayLastName: any;
+  displayCountry: any;
+  displayRegion: any;
+  displayCity: any;
   displayDesc: any;
   displayEmail: any;
   displayMobile: any;
@@ -46,18 +50,16 @@ export class CPanelPage {
     readUserfromAuth(){
       this.authService.loadUserData().subscribe(data => {
         console.log('data',data);
-        this.displayImage = data.user_picture;
-        this.displayName = data.field_name;
-        this.displayInfo = data.field_address; 
-        this.displayMobile = data.field_mobile;
+        this.displayImage = this.authService.displayImg;
+        this.displayFirstName = this.authService.displayFirstName;
+        this.displayLastName = this.authService.displayLastName;
+        this.displayCountry = this.authService.displayCountry;
+        this.displayRegion = this.authService.displayRegion;
+        this.displayCity = this.authService.displayCity;
+        this.displayMobile = data.field_mobile_number;
         this.displayDesc = data.field_short_description; 
         this.displayEmail = data.mail;
-        console.log('info editprofile',this.displayInfo);
-        console.log('name editprofile',this.displayName);
-        console.log('mobile editprofile',this.displayMobile);
-        console.log('img editprofile',this.displayImage);
-        console.log('email editprofile',this.displayEmail);
-        console.log('desc editprofile',this.displayDesc);
+        
       });
     }
   
@@ -67,6 +69,10 @@ export class CPanelPage {
 
   gotoProjectPostForm() {
     this.navCtrl.push(ProjectPostFormPage);
+  }
+
+  gotoProjectList() {
+    this.navCtrl.push(ProjectListPage);
   }
 
   gotoBrowseProfile(){

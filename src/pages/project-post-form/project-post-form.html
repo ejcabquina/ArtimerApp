@@ -5,31 +5,89 @@
 </ion-header>
 
 <ion-content no-padding>
-  <ion-grid>
+<ion-grid>
 
-      <ion-row class="input-wrapper">
-            <div class="item-name">Project Name</div>
-            <ion-input class="client-style" type="text" placeholder="Project Name"></ion-input>
-    </ion-row>
+<form (submit)="postProject()">
 
-    <ion-row class="input-wrapper">
-        <div class="item-name">Project Type</div>
-            <ion-item>
-                <ion-select class="client-style" [(ngModel)]="acct_type">
-                  <ion-option value="Branding">Logo & Branding</ion-option>
-                  <ion-option value="Advertising Campaign">Advertising Campaign</ion-option>
-                  <ion-option value="Illustrations">Drawing, Painting & Illustrations</ion-option>
-                  <ion-option value="Photography">Photography</ion-option>
-                </ion-select>
-              </ion-item>
-    </ion-row>
-    
-    <ion-row class="input-wrapper">
-        <div class="item-name">Project Details</div>
+  <ion-row class="input-wrapper">
+    <div class="item-name">Project Name</div>
+    <ion-input class="client-style" type="text" placeholder="Project Name"></ion-input>
+  </ion-row>
+
+  <ion-row class="input-wrapper">
+    <div class="item-name">Project Type</div>
+      <ion-item>
+        <ion-select class="client-style" [(ngModel)]="PostProjectData.field_project_type" required>
+          <ion-option value="branding" selected="true">Logo & Branding</ion-option>
+          <ion-option value="advertising">Advertising Campaign</ion-option>
+          <ion-option value="illustration">Drawing, Painting & Illustrations</ion-option>
+          <ion-option value="photography">Photography</ion-option>
+        </ion-select>
+      </ion-item>
+  </ion-row>
+
+  <ion-row class="input-wrapper">
+    <div class="item-name">Project Details</div>
       <ion-input class="client-style" placeholder="Please write a short detail about the project" type="user"></ion-input>
-    </ion-row>
+  </ion-row>
 
-    
+  <ion-row [style.display]="PostProjectData.field_project_type == 'branding' ? 'block' : 'none'" >
+    <div class="item-name">Logo</div>
+
+    <div class="item-name">Project Name</div>
+              <ion-input class="client-style" type="text" placeholder="Ex:Ocean, Zoo, Superhero"></ion-input>
+      <ion-row >
+        <div>Logo and Branding</div>
+      </ion-row>
+
+      <ion-list radio-group>
+          <ion-list-header>
+            Select Logo Type:
+          </ion-list-header>
+          <ion-item>
+            <ion-label><img src="assets/imgs/ltype-pictorial.svg"></ion-label>
+            <ion-radio checked="true" value="pictorial"></ion-radio>
+          </ion-item>
+        
+          <ion-item>
+            <ion-label><img src="assets/imgs/ltype-wordmark.svg"></ion-label>
+            <ion-radio value="wordmark"></ion-radio>
+          </ion-item>
+        
+          <ion-item>
+            <ion-label><img src="assets/imgs/ltype-combination.svg"></ion-label>
+            <ion-radio value="hybrid"></ion-radio>
+          </ion-item>
+        </ion-list>
+      
+  </ion-row><!--cbrief forms-->
+
+    <ion-row [style.display]="PostProjectData.field_project_type == 'advertising' ? 'block' : 'none'" >
+      <div class="item-name">Advertising</div>
+     
+      <ion-row >
+        <div>Advertising</div>
+      </ion-row>
+      
+    </ion-row><!--cbrief forms-->
+
+    <ion-row [style.display]="PostProjectData.field_project_type == 'illustration' ? 'block' : 'none'" >
+      <div class="item-name">Illustrations</div>
+     
+      <ion-row >
+        <div>Illustrations</div>
+      </ion-row>
+      
+    </ion-row><!--cbrief forms-->
+
+    <ion-row [style.display]="PostProjectData.field_project_type == 'photography' ? 'block' : 'none'" >
+      <div class="item-name">Photography</div>
+      
+      <ion-row >
+        <div>Photography</div>
+      </ion-row>
+      
+    </ion-row><!--cbrief forms-->
    
     <ion-row>
         <div class="item-name">Deliverable</div>
@@ -47,13 +105,15 @@
        </ion-card>
     </ion-row>
 
+  </form>
+
     <ion-row>
         <ion-item>
             <ion-label>I have read and agreed to the terms and conditions of using Artimer App</ion-label>
             <ion-checkbox color="designer" checked="false"></ion-checkbox>
           </ion-item>
     </ion-row>
-    <button class="postProject" (click)="postProject()" ion-button color="client">Post Project</button>
+    <button class="signup" block type="submit" ion-button color="client">CONFIRM</button>
 
 
 </ion-grid>

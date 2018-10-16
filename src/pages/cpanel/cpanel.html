@@ -14,27 +14,30 @@
                 </ion-col>
 
                 <ion-col class="info-wrapper" col-7 >
-                        <div id="display-name" *ngFor="let name of displayName">
-                                {{name.given}}{{name.family}}
+                        <div id="display-name">
+                                <div *ngFor="let fname of displayFirstName">{{fname.value}}</div>&nbsp;<div *ngFor="let lname of displayLastName">{{lname.value}}</div>
                         </div>
 
-                        <div id="sub-info-wrapper">
-                                <div id="account-type">
+                        <div class="sub-info-wrapper">
+                                <div class="account-info">
                                         Client,
                                 </div>
                                 
-                                <div id="date-joined">
+                                <div class="account-info">
                                         January 2018
                                 </div>
                         </div>
 
-                        
-                        <div *ngFor="let mail of displayEmail">
+                        <div class="sub-info-wrapper">
+                        <div class="account-info" *ngFor="let mail of displayEmail">
                                 {{mail.value}}
                         </div>
-                                        
-                        <div *ngFor="let mobile of displayMobile">
+                        </div>
+
+                        <div class="sub-info-wrapper">
+                        <div class="account-info" *ngFor="let mobile of displayMobile">
                                 {{mobile.value}}
+                        </div>
                         </div>
                         
                         <div id="locality" *ngFor="let info of displayInfo">{{info.locality}}, {{info.administrative_area}}</div>
@@ -91,7 +94,8 @@
                 </ion-col>
 
                 <ion-row id="post-btn-wrapper">
-                        <button id="post-btn" (click) ="gotoProjectPostForm()" ion-button color="client">POST PROJECT</button>
+                        <ion-col col-6 class="post-btn-wrapper"><button class="post-btn" (click) ="gotoProjectPostForm()" ion-button color="client">POST PROJECT</button></ion-col>
+                        <ion-col col-6 class="post-btn-wrapper"><button class="post-btn" (click) ="gotoProjectList()" ion-button color="designer">SEARCH PROJECT</button></ion-col>
                 </ion-row>
         
         </ion-card>

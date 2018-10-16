@@ -67,16 +67,18 @@ ion-grid {
             word-break: keep-all;
 
             #display-name{
-                font-size: 3vh;
+                font-size: 2.5vh;
                 font-weight: bold;
-                
+                word-wrap: none;
+                word-break: keep-all;
+                white-space: nowrap;
             }
 
-            #sub-info-wrapper{
+            .sub-info-wrapper{
                 display: flex;
                 flex-flow: row nowrap !important;
 
-                #account-type{
+                .account-info{
                     font-size: 2vh;
                     color: #ababab;
                     
@@ -201,14 +203,21 @@ ion-grid {
         #post-btn-wrapper{
             height: 30% !important;
             width: 100% !important;
-            margin: 1%;
-            
-            #post-btn{
+            margin-top: 1vh;
+
+            .post-btn-wrapper{ 
+            display:flex !important;
+            justify-content: center!important;
+            align-items: center !important;
+            .post-btn{
                 height: 80% !important;
-                width: 65% !important;
+                width: 80% !important;
                 border-radius: 1vh;
-                font-size: 3vh;
+                text-align: center;
+                font-size: 3vw;
                 margin:auto;
+                padding: 1vh;
+                }
             }
         }
     }

@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
+import { Component, OnInit } from '@angular/core';
+import { IonicPage, NavController, NavParams, ToastController, LoadingController, AlertController } from 'ionic-angular';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { AuthService } from '../../providers/auth-service/auth-service';
@@ -8,91 +8,164 @@ import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/filter';
 
-/**
- * Generated class for the EditProfilePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+/** Generated class for the EditProfilePage page. */
 
 @IonicPage()
 @Component({
   selector: 'page-edit-profile',
   templateUrl: 'edit-profile.html',
 })
-export class EditProfilePage {
+export class EditProfilePage implements OnInit{
 
-  editProfileData =  {
+ editProfileData =  {
     
+    "field_first_name":
+      {
+       "value":""
+      },
+    "field_last_name":
+      {
+       "value":""
+      },
     "mail": 
       {
         "value": ""
       },
-    "field_address": 
-      {
-        "administrative_area": "",
-        "locality": ""
-      },
-
-    "field_mobile": 
+   
+    "field_city": 
       {
         "value": ""
       },
-
-    "field_name":
+    "field_country": 
       {
-        "given":"",
-        "family":""
+        "value": ""
       },
-    
+    "field_region": 
+      {
+        "value": ""
+      },
+    "field_mobile_number": 
+      {
+        "value": ""
+      },
     "field_short_description": 
       {
         "value": ""
       },
-    "user_picture":
+      "pass":
       {
-        "url": ""
+        "value":{
+        "existing":""
+        }
       }
   };
 
-  displayImage: any;
-  displayName: any;
-  displayInfo: any;
-  displayDesc: any;
-  displayEmail: any;
-  displayMobile: any;
+  
+
+  
+
+  
+
+  loading: any;
+  data: any;
+
+
+
+  displayImage: string;
+  displayFirstName: string;
+  displayLastName: string;
+  displayCountry: string;
+  displayRegion: string;
+  displayCity: string;
+  displayDesc: string;
+  displayEmail: string;
+  displayMobile: string;
+  
 
   imageURI:any;
   imageFileName:any;
 
-  constructor( public http: HttpClient, public navCtrl: NavController, public navParams: NavParams, public authService: AuthService,
+  constructor( private alertCtrl: AlertController, public http: HttpClient, public navCtrl: NavController, public navParams: NavParams, public authService: AuthService,
     private transfer: FileTransfer,private camera: Camera, public loadingCtrl: LoadingController, public toastCtrl: ToastController) {
-      this.readUserfromAuth();
-    }
-  
-    readUserfromAuth(){
-      this.authService.loadUserData().subscribe(data => {
-        console.log('data',data);
-        this.displayImage = data.user_picture;
-        this.displayName = data.field_name;
-        this.displayInfo = data.field_address; 
-        this.displayMobile = data.field_mobile;
-        this.displayDesc = data.field_short_description; 
-        this.displayEmail = data.mail;
-        console.log('info editprofile',this.displayInfo);
-        console.log('name editprofile',this.displayName);
-        console.log('mobile editprofile',this.displayMobile);
-        console.log('img editprofile',this.displayImage);
-        console.log('email editprofile',this.displayEmail);
-        console.log('desc editprofile',this.displayDesc);
-      });
+      
+      console.log('from edit init',this.editProfileData);
     }
 
+    ngOnInit(){
+      this.readUserfromAuth();
+    }
+
+    readUserfromAuth(){
+      this.authService.loadUserData().subscribe(data => {
+        console.log('raw data editprofile',data);
+       
+        this.displayImage = this.authService.displayImg;
+        this.displayFirstName = this.authService.displayFirstName;
+        this.displayLastName = this.authService.displayLastName;
+        this.displayCountry = this.authService.displayCountry;
+        this.displayRegion = this.authService.displayRegion;
+        this.displayCity = this.authService.displayCity;
+        this.displayMobile = this.authService.displayMobile;
+        this.displayDesc = this.authService.displayDesc;
+        this.displayEmail = this.authService.displayEmail;
+       
+        console.log('FirstNameLastname editprofile',this.displayFirstName, this.displayLastName);
+        console.log('Country,Region,City editprofile',this.displayCountry, this.displayRegion, this.displayCity);
+        console.log('mobile editprofile',this.displayMobile);
+        console.log('email editprofile',this.displayEmail);
+        console.log('desc editprofile',this.displayDesc);
+        console.log('img editprofile',this.displayImage);
+      });
+    }
+  
+    
+
   saveProfile(){
+    console.log(this.editProfileData);
+    this.showLoader();
     this.authService.saveProfileChanges(this.editProfileData).then( res=>{
-      console.log('save profile')
+      let alert = this.alertCtrl.create({
+        title: 'Update Successful',
+        subTitle: 'You have successfully updated your profile.',
+        buttons: ['OK']
+      });
+      alert.present();
+
+      
+      this.authService.assignDisplay(); //reload
       this.navCtrl.popToRoot();
+      this.loading.dismiss();
+     
+      //this.navCtrl.popToRoot();
+    }, (err) => {
+      this.loading.dismiss();
+      this.presentToast(err);
     });
+      console.log('save profile')
+   
+  }
+
+  showLoader(){
+    this.loading = this.loadingCtrl.create({
+        content: 'Authenticating...'
+    });
+
+    this.loading.present();
+  }
+
+  presentToast(msg) {
+    let toast = this.toastCtrl.create({
+      message: msg,
+      duration: 3000,
+      position: 'bottom',
+      dismissOnPageChange: true
+    });
+
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+
+    toast.present();
   }
 
   getImage() {
@@ -138,19 +211,6 @@ export class EditProfilePage {
     });
   }
 
-  presentToast(msg) {
-    let toast = this.toastCtrl.create({
-      message: msg,
-      duration: 3000,
-      position: 'bottom'
-    });
-  
-    toast.onDidDismiss(() => {
-      console.log('Dismissed toast');
-    });
-  
-    toast.present();
-  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EditProfilePage');

@@ -1,7 +1,36 @@
+<ion-header>
+    <ion-navbar>  
+            <button ion-button menuToggle icon-only>
+                    <ion-icon name="menu"></ion-icon>
+            </button>
+    </ion-navbar>
+</ion-header>
+<ion-menu [content]="mycontent">
+<ion-content>
+    <ion-list>
+        <ion-item menuClose detail-none (click)="gotoCPanel()">CPanel</ion-item>
+        <ion-item menuClose detail-none (click)="gotoProfilePage()">ProfilePage</ion-item>
+        <ion-item menuClose detail-none (click)="gotoBrowseProfile">BrowseProfile</ion-item>
+        <ion-item menuClose detail-none (click)="gotoMessenger()">Messenger</ion-item>
+        <ion-item menuClose detail-none (click)="gotoNotification()">Notification</ion-item>
+        <ion-item menuClose detail-none (click)="gotoEditProfile()">EditProfile</ion-item>
+        <ion-item menuClose detail-none (click)="gotoAccountSettings()">AccountSettings</ion-item>
+        <ion-item menuClose detail-none (click)="gotoProjectPostForm()">ProjectPostForm</ion-item>
+        <ion-item menuClose detail-none (click)="gotoProjectListPage()">ProjectListPage</ion-item>
+        <ion-item menuClose detail-none (click)="gotoProjectDetailsViewPage()">ProjectDetailsViewPage</ion-item>
+        <ion-item menuClose detail-none (click)="gotoBookingStatus()">BookingStatus</ion-item>
+        <ion-item menuClose detail-none (click)="gotoBookingStatusViewPage()">BookingStatusViewPage</ion-item>
+        <ion-item menuClose detail-none (click)="gotoBookProjectFormPage()">BookProjectFormPage</ion-item>
+        <ion-item menuClose detail-none (click)="gotoCreativeBriefFAQPage()">CreativeBriefFAQPage</ion-item>
+        <ion-item menuClose detail-none (click)="gotoTOSPage()">TOSPage</ion-item>
+    </ion-list>
+</ion-content>
+</ion-menu>
+
 <ion-content>
     <ion-grid>
         <ion-row id="login-logo">
-            <img alt="logo" (click)="gotoProjectList()" src="assets/imgs/logo.svg" > 
+            <img alt="logo" src="assets/imgs/logo.svg" > 
         </ion-row>
         
         <ion-row id="btn-container">

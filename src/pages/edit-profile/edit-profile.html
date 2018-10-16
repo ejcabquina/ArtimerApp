@@ -19,31 +19,43 @@
       <form (submit)="saveProfile()">
     <ion-row id="img-section">
 
-        <img class="prof-img" (click)="getImage()" *ngFor="let img of displayImage" src="{{img.url}}"/>
+        <div><img class="prof-img" *ngFor="let img of displayImage" src="{{img.url}}"/></div>
         <div class="change-photo">
           <button ion-button (click)="uploadFile()" color="client" clear>Change Profile Photo</button>
         </div>
 
     </ion-row>
     <ion-row id="info-section" >
-
-      <div *ngFor="let name of displayName">
-        <ion-label>First Name:</ion-label> 
-        <ion-input type="text" placeholder="{{name.given}}" [(ngModel)]="editProfileData.field_name.given" name="given"></ion-input>
-        <ion-label>Last Name:</ion-label> 
-        <ion-input type="text" placeholder="{{name.family}}" [(ngModel)]="editProfileData.field_name.family" name="family"></ion-input>
-      </div>
-
-      <div *ngFor="let info of displayInfo">
-        <ion-label>City:</ion-label>
-        <ion-input type="text" placeholder="{{info.locality}}" [(ngModel)]="editProfileData.field_address.locality" name="city"></ion-input>
-        <ion-label>State/Region:</ion-label><div class="previous-value"> </div>
-        <ion-input type="text" placeholder="{{info.administrative_area}}" [(ngModel)]="editProfileData.field_address.administrative_area"  name="area"></ion-input>
-      </div>
-
-       <ion-label>Short Description:</ion-label>
-        <ion-textarea *ngFor="let desc of displayDesc" class='long-text-input' type="text" maxlength="150" rows="4" wrap="hard" placeholder="{{desc.processed}}" [(ngModel)]="editProfileData.field_short_description.value" name="short_desc"></ion-textarea>
       
+
+      
+      <ion-label>First Name:</ion-label> <div class="previous-value" *ngFor="let fname of displayFirstName">{{fname.value}}</div>
+        <ion-input type="text" placeholder="First Name" [(ngModel)]="editProfileData.field_first_name.value" name="given"></ion-input>
+      
+      
+      <ion-label>Last Name:</ion-label> <div class="previous-value" *ngFor="let lname of displayLastName"> {{lname.value}} </div>
+        <ion-input type="text" placeholder="Last Name" [(ngModel)]="editProfileData.field_last_name.value" name="family"></ion-input>
+      
+      
+        <ion-label>Country:</ion-label> <div class="previous-value" *ngFor="let country of displayCountry">{{country.value}}</div>
+        <ion-input type="text" placeholder="Country of Residence" [(ngModel)]="editProfileData.field_country.value" name="country"></ion-input>
+      
+
+      
+        <ion-label>State/Region:</ion-label> <div class="previous-value" *ngFor="let region of displayRegion">{{region.value}}</div>
+        <ion-input type="text" placeholder="Region" [(ngModel)]="editProfileData.field_region.value" name="region"></ion-input>
+      
+
+      
+        <ion-label>City:</ion-label> <div class="previous-value" *ngFor="let city of displayCity"> {{city.value}}</div>
+        <ion-input type="text" placeholder="City" [(ngModel)]="editProfileData.field_city.value" name="city"></ion-input>
+      
+
+      
+        <ion-label>Short Description:</ion-label><div class="previous-value" *ngFor="let desc of displayDesc">{{desc.value}} </div>
+        <ion-textarea  class='long-text-input' type="text" maxlength="150" rows="4" wrap="hard" placeholder="Short Description about yourself" [(ngModel)]="editProfileData.field_short_description.value" name="short_desc"></ion-textarea>
+     
+
     </ion-row>
 
     <ion-row id="divider-row">
@@ -51,12 +63,19 @@
     </ion-row>
 
     <ion-row id="private-info-section">
+      
+        <ion-label>E-mail:</ion-label><div *ngFor="let mail of displayEmail" class="previous-value">{{mail.value}}</div>
+        <ion-input  type="email" placeholder="" [(ngModel)]="editProfileData.mail.value" name="mail"></ion-input>
+      
 
-      <ion-label>E-mail:</ion-label>
-      <ion-input *ngFor="let mail of displayEmail" type="email" placeholder="{{mail.value}}" [(ngModel)]="editProfileData.mail.value" name="mail"></ion-input>
-      <ion-label>Mobile Number:</ion-label>
-      <ion-input *ngFor="let mobile of displayMobile" type="number" placeholder="{{mobile.value}}" [(ngModel)]="editProfileData.field_mobile.value" name="mobile"></ion-input>
+      
+      <ion-label>Mobile Number:</ion-label><div class="previous-value" *ngFor="let mobile of displayMobile"> {{mobile.value}}</div>
+      <ion-input  type="number" placeholder="" [(ngModel)]="editProfileData.field_mobile_number.value" name="mobile"></ion-input>
+     
 
+      <ion-label>Current Password:</ion-label> 
+      <ion-input  type="password" placeholder="Current Password" [(ngModel)]="editProfileData.pass.value.existing" name="current_pass"></ion-input>
+  
   </ion-row>
     <ion-row id="button-container">
       <button class="save-button" ion-button  type="submit" color="client">Save</button>

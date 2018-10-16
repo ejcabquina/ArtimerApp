@@ -8,6 +8,12 @@ import { HomePage } from '../home/home';
 })
 export class ProjectPostFormPage {
 
+  PostProjectData = {
+    "field_project_type":{
+      "value":""
+    }
+  }
+
   public anArray:any=[];
 
   constructor(public navCtrl: NavController, public alertCtrl: AlertController) {
@@ -36,4 +42,10 @@ export class ProjectPostFormPage {
  Add(){
    this.anArray.push({'value':''});
    }
+
+
+   saveProject(){
+   
+    
+  }
 }

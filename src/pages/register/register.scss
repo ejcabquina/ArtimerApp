@@ -25,6 +25,13 @@ page-register {
         align-items: center;
         }
 
+    .row-wrap{
+        width: 100%;
+        display: flex !important;
+        flex-flow: row nowrap !important;
+        word-wrap: none;
+    }
+
     .client-style {
         color: #7c2417;
         font-size: 2vh;

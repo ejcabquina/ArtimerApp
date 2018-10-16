@@ -9,6 +9,7 @@ import { AuthService } from '../providers/auth-service/auth-service';
 import { Camera } from '@ionic-native/camera';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 import { File } from '@ionic-native/file';
+import { Base64 } from '@ionic-native/base64';
 
 import { IonicStorageModule } from '@ionic/storage';
 
@@ -91,6 +92,7 @@ import { RatingPage } from '../pages/rating/rating';
     FileTransfer,
     FileTransferObject,
     File,
+    Base64,
     Camera
   ]
 })

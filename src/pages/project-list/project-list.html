@@ -15,24 +15,28 @@
   <ion-grid>
       
 
-      <ion-card *ngFor="let item of items" (click)="gotoProjectDetailsViewPage()">
+      <ion-card class="project-item" *ngFor="let item of items" (click)="gotoProjectDetailsViewPage()">
         <ion-col class="img-wrapper" col-4>
-          <img class="img" [src]="item.thumbnailUrl"/>
+          <img class="img" src="http://dev-artimer.pantheonsite.io{{item.avatars_user_picture}}"/>
         </ion-col>
-        <ion-col class="desc-wrapper" col-8>
+        <ion-col class="desc-wrapper" col-6>
           <ion-card-content>
             
               
               <ion-card-title class="project-name-wrapper" >
               <div class="project-name">{{item.title}}</div>
               </ion-card-title>
+              by&nbsp;{{item.name}}&nbsp;on&nbsp;{{item.created}}
         
               <div class="project-summary">
-                The most popular industrial group ever, and largely
-                responsible for bringing the music to a mass audience.
+                {{item.field_project_details}}
               </div>
             
           </ion-card-content>
+        </ion-col>
+
+        <ion-col col-2>
+          <div>{{item.field_project_budget_value}}</div>
         </ion-col>
 
         </ion-card>
