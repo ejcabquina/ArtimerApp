@@ -6,9 +6,13 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { HttpClientModule } from '@angular/common/http'
 import { HttpModule } from '@angular/http';
 import { AuthService } from '../providers/auth-service/auth-service';
+
+
 import { Camera } from '@ionic-native/camera';
-import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
+import { Transfer } from '@ionic-native/transfer';
+import { FilePath } from '@ionic-native/file-path';
 import { File } from '@ionic-native/file';
+
 import { Base64 } from '@ionic-native/base64';
 
 import { IonicStorageModule } from '@ionic/storage';
@@ -88,12 +92,14 @@ import { RatingPage } from '../pages/rating/rating';
     AuthService,
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    FileTransfer,
-    FileTransferObject,
     File,
+    Transfer,
+    Camera,
+    FilePath,
     Base64,
-    Camera
+    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    
+  
   ]
 })
 export class AppModule {}

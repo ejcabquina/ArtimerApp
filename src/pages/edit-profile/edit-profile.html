@@ -16,23 +16,37 @@
 <ion-content>
   <ion-grid>
 
-      <form (submit)="saveProfile()">
-    <ion-row id="img-section">
+      <ion-row id="img-section">
 
-        <div><img class="prof-img" *ngFor="let img of displayImage" src="{{img.url}}"/></div>
-        <div class="change-photo">
-          <button ion-button (click)="uploadFile()" color="client" clear>Change Profile Photo</button>
-        </div>
+          <div><img class="prof-img" *ngFor="let img of displayImage" src="{{img.url}}"/></div>
+          <div><img src="{{pathForImage(lastImage)}}" style="width: 100%" [hidden]="lastImage === null">
+            <h3 [hidden]="lastImage !== null">Please Select Image!</h3></div> 
+          <div class="change-photo">
+            <ion-item>
+              <button (click)="presentActionSheet()">
+                <ion-icon name="camera"></ion-icon>Select Image
+              </button>
 
-    </ion-row>
+              <button (click)="toBase64()">
+                  <ion-icon name="checkmark"></ion-icon>CheckBase64
+                </button>
+              
+            </ion-item>
+          </div>
+  
+      </ion-row>
+
+
+    <form (submit)="saveProfile()">
+
+       
+   
     <ion-row id="info-section" >
       
-
-      
       <ion-label>First Name:</ion-label> <div class="previous-value" *ngFor="let fname of displayFirstName">{{fname.value}}</div>
-        <ion-input type="text" placeholder="First Name" [(ngModel)]="editProfileData.field_first_name.value" name="given"></ion-input>
-      
-      
+        <ion-input type="text" placeholder="First Name" [(ngModel)]="editProfileData.field_first_name.value" name="field_first_name"></ion-input>
+
+    
       <ion-label>Last Name:</ion-label> <div class="previous-value" *ngFor="let lname of displayLastName"> {{lname.value}} </div>
         <ion-input type="text" placeholder="Last Name" [(ngModel)]="editProfileData.field_last_name.value" name="family"></ion-input>
       
@@ -55,8 +69,8 @@
         <ion-label>Short Description:</ion-label><div class="previous-value" *ngFor="let desc of displayDesc">{{desc.value}} </div>
         <ion-textarea  class='long-text-input' type="text" maxlength="150" rows="4" wrap="hard" placeholder="Short Description about yourself" [(ngModel)]="editProfileData.field_short_description.value" name="short_desc"></ion-textarea>
      
-
-    </ion-row>
+      </ion-row> <!--infosection-->
+    
 
     <ion-row id="divider-row">
       <div class="divider-text">Private Information</div>
@@ -64,19 +78,17 @@
 
     <ion-row id="private-info-section">
       
-        <ion-label>E-mail:</ion-label><div *ngFor="let mail of displayEmail" class="previous-value">{{mail.value}}</div>
-        <ion-input  type="email" placeholder="" [(ngModel)]="editProfileData.mail.value" name="mail"></ion-input>
-      
-
+      <ion-label>E-mail:</ion-label><div *ngFor="let mail of displayEmail" class="previous-value">{{mail.value}}</div>
+      <ion-input  type="email" placeholder="" [(ngModel)]="editProfileData.mail.value" name="mail"></ion-input>
       
       <ion-label>Mobile Number:</ion-label><div class="previous-value" *ngFor="let mobile of displayMobile"> {{mobile.value}}</div>
-      <ion-input  type="number" placeholder="" [(ngModel)]="editProfileData.field_mobile_number.value" name="mobile"></ion-input>
-     
-
+      <ion-input  type="number" placeholder="" [(ngModel)]="editProfileData.field_mobile_number.value" name="mobile_number"></ion-input>
+    
       <ion-label>Current Password:</ion-label> 
       <ion-input  type="password" placeholder="Current Password" [(ngModel)]="editProfileData.pass.value.existing" name="current_pass"></ion-input>
   
   </ion-row>
+
     <ion-row id="button-container">
       <button class="save-button" ion-button  type="submit" color="client">Save</button>
     </ion-row>

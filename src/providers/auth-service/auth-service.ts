@@ -8,7 +8,7 @@ import 'rxjs/add/operator/map'
 
 export class AuthService {
 
-  apiUrl: string =  'https://dev-artimer.pantheonsite.io';
+  apiUrl: string ='http://127.0.0.1/drupal';
   public isLoggedIn = false;
   public CSRFToken: string;
   public LToken: string;
@@ -537,7 +537,7 @@ storeUserID(uid){
         headers.append('X-CSRF-Token', localStorage.getItem('loggedin_token'));
         headers.append('Authorization', 'Basic '+ localStorage.getItem('basic_token'));
 
-        this.http.post(this.apiUrl+'/user/logout?csrf_token=123',{}, {headers: headers})
+        this.http.post(this.apiUrl+'/user/logout?_format=json',{}, {headers: headers})
           .subscribe(res => {
             this.destroyUserCredentials();
           
