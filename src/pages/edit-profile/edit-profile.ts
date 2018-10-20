@@ -26,7 +26,33 @@ declare var cordova: any;
 })
 export class EditProfilePage implements OnInit{
 
+  loading: any;
+  lastImage: string = null
+  Image64: string;
+
+  data: any;
   
+  displayData: any;
+  displayImage: any;
+  displayFirstName: any;
+  displayLastName: any;
+  displayCountry:any;
+  displayRegion:any;
+  displayCity:any;
+  displayDesc:any;
+  displayEmail:any;
+  displayMobile:any;
+
+  inputData: string;
+  inputImage: string;
+  inputFirstName: string;
+  inputLastName: string;
+  inputCountry:string;
+  inputRegion:string;
+  inputCity:string;
+  inputDesc:string;
+  inputEmail:string;
+  inputMobile:string;
 
   editProfileData = {
     "pass":{"value":{"existing":""}},
@@ -51,43 +77,65 @@ export class EditProfilePage implements OnInit{
    }; */
 
   
-  loading: any;
-  lastImage: string = null
-  Image64: string;
-
-  data: any;
   
-  displayData: any;
-  displayImage: any;
-  displayFirstName: any;
-  displayLastName: any;
-  displayCountry:any;
-  displayRegion:any;
-  displayCity:any;
-  displayDesc:any;
-  displayEmail:any;
-  displayMobile:any;
   
   constructor(private base64: Base64, private transfer: Transfer, private file: File, private filePath: FilePath, 
     public platform: Platform, public actionSheetCtrl: ActionSheetController,private alertCtrl: AlertController, 
     public navCtrl: NavController, public navParams: NavParams, public authService: AuthService,
     private camera: Camera, public loadingCtrl: LoadingController, public toastCtrl: ToastController) {
-
+      this.reloadCurrentData();
     }
 
     ngOnInit(){
       
       this.authService.loadUserData().subscribe(data => {
       
-        this.displayFirstName = data.field_first_name.map(res => { console.log(res.value); return res.value;  });
-        this.displayLastName = data.field_last_name.map(res => { console.log(res.value); return res.value;  });
-        this.displayEmail = data.mail.map(res => { console.log(res.value); return res.value;  });
-        this.displayMobile = data.field_mobile_number.map(res => { console.log(res.value); return res.value;  });
-        this.displayCity = data.field_city.map(res => { console.log(res.value); return res.value;  });
-        this.displayCountry = data.field_country.map(res => { console.log(res.value); return res.value;  });
-        this.displayRegion = data.field_region.map(res => { console.log(res.value); return res.value;  });
-        this.displayDesc = data.field_short_description.map(res => { console.log(res.value); return res.value;  });
-        this.displayCreated = data.created.map(res => { console.log(res.value); return res.value;  });
+      this.displayFirstName = data.field_first_name.map(res => { console.log(res.value); this.inputFirstName = res.value; return res.value; });
+      this.displayLastName = data.field_last_name.map(res => { console.log(res.value); this.inputLastName = res.value; return res.value;});
+      this.displayEmail = data.mail.map(res => { console.log(res.value); this.inputEmail = res.value; return res.value; });
+      this.displayMobile = data.field_mobile_number.map(res => { console.log(res.value); this.inputMobile = res.value; return res.value; });
+      this.displayCity = data.field_city.map(res => { console.log(res.value); this.inputCity = res.value; return res.value; });
+      this.displayCountry = data.field_country.map(res => { console.log(res.value); this.inputCountry = res.value; return res.value; });
+      this.displayRegion = data.field_region.map(res => { console.log(res.value); this.inputRegion = res.value; return res.value; });
+      this.displayDesc = data.field_short_description.map(res => { console.log(res.value); this.inputDesc = res.value; return res.value; });
+
+      this.editProfileData = {
+        "pass":{"value":{"existing":""}},
+        "mail":{"value":this.inputEmail},
+        "field_country":{"value":this.inputCountry},
+        "field_region":{"value":this.inputRegion},
+        "field_city":{"value":this.inputCity},
+        "field_mobile_number":{"value":this.inputMobile},
+        "field_first_name":{"value":this.inputFirstName},
+        "field_last_name":{"value":this.inputLastName},
+        "field_short_description":{"value":this.inputDesc}
+     }; 
+       
+        console.log('editprofiledata',);
+        console.log('editprofile fname',this.displayFirstName);
+        console.log('editprofile lname',this.displayLastName);
+        console.log('editprofile mobile',this.displayMobile);
+        console.log('editprofile city',this.displayCity);
+        console.log('editprofile country',this.displayCountry);
+        console.log('editprofile region',this.displayRegion);
+        console.log('editprofile mail',this.displayEmail);
+      });
+
+    }
+
+    reloadCurrentData(){
+      this.authService.loadUserData().subscribe(data => {
+      
+      this.displayFirstName = data.field_first_name.map(res => { console.log(res.value); this.inputFirstName = res.value; return res.value; });
+      this.displayLastName = data.field_last_name.map(res => { console.log(res.value); this.inputLastName = res.value; return res.value;});
+      this.displayEmail = data.mail.map(res => { console.log(res.value); this.inputEmail = res.value; return res.value; });
+      this.displayMobile = data.field_mobile_number.map(res => { console.log(res.value); this.inputMobile = res.value; return res.value; });
+      this.displayCity = data.field_city.map(res => { console.log(res.value); this.inputCity = res.value; return res.value; });
+      this.displayCountry = data.field_country.map(res => { console.log(res.value); this.inputCountry = res.value; return res.value; });
+      this.displayRegion = data.field_region.map(res => { console.log(res.value); this.inputRegion = res.value; return res.value; });
+      this.displayDesc = data.field_short_description.map(res => { console.log(res.value); this.inputDesc = res.value; return res.value; });
+
+       
         console.log('editprofiledata',);
         console.log('editprofile fname',this.displayFirstName);
         console.log('editprofile lname',this.displayLastName);
@@ -101,6 +149,7 @@ export class EditProfilePage implements OnInit{
     }
 
     saveProfile(){
+    this.reloadCurrentData();
     console.log(this.editProfileData);
     this.showLoader();
     this.authService.saveProfileChanges(this.editProfileData).then( res=>{
