@@ -14,35 +14,26 @@
                 </ion-col>
 
                 <ion-col class="info-wrapper" col-7 >
-                        <div id="display-name">
-                                <div *ngFor="let fname of displayFirstName">{{fname.value}}</div>&nbsp;<div *ngFor="let lname of displayLastName">{{lname.value}}</div>
+                        <div class="display-name">
+                                <div *ngFor="let fname of displayFirstName">{{fname}}</div>&nbsp;<div *ngFor="let lname of displayLastName">{{lname}}</div>
                         </div>
-
                         <div class="sub-info-wrapper">
-                                <div class="account-info">
-                                        Client,
-                                </div>
-                                
-                                <div class="account-info">
-                                        January 2018
-                                </div>
+                        
+                        <div class="account-info">
+                                Member since:&nbsp;<div *ngFor="let created of displayCreated">{{created|date:'MMMM yyyy'}}</div>
                         </div>
-
+                        </div>
                         <div class="sub-info-wrapper">
-                        <div class="account-info" *ngFor="let mail of displayEmail">
-                                {{mail.value}}
+                                <div class="account-info" *ngFor="let mail of displayEmail">{{mail}}</div>
                         </div>
-                        </div>
-
                         <div class="sub-info-wrapper">
-                        <div class="account-info" *ngFor="let mobile of displayMobile">
-                                {{mobile.value}}
-                        </div>
+                        <div class="account-info" *ngFor="let mobile of displayMobile">{{mobile}}</div>
                         </div>
                         
-                        <div id="locality" *ngFor="let info of displayInfo">{{info.locality}}, {{info.administrative_area}}</div>
-                        
-
+                        <div class="sub-info-wrapper">
+                        <div class="locality" *ngFor="let city of displayCity">{{city}},</div>&nbsp;
+                        <div class="locality" *ngFor="let region of displayRegion">{{region}}</div>
+                        </div>
                         
                 </ion-col>
         </ion-card>
@@ -52,9 +43,7 @@
         <ion-card id="short-desc-wrapper">
                 <ion-row class="center-short-desc">
                 <div class="short-desc-title">Short Description</div>
-                        <div class="short-desc" *ngFor="let desc of displayDesc">
-                                {{desc.processed}}
-                        </div>
+                        <div class="short-desc" *ngFor="let desc of displayDesc">{{desc}}</div>
                 </ion-row>
         </ion-card>
 

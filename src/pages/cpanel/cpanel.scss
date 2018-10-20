@@ -66,7 +66,13 @@ ion-grid {
             font-size: 3vh;
             word-break: keep-all;
 
-            #display-name{
+            ion-datetime{
+                padding:0px;
+            }
+
+            .display-name{
+                display:flex !important;
+                flex-flow: row nowrap !important;
                 font-size: 2.5vh;
                 font-weight: bold;
                 word-wrap: none;
@@ -79,9 +85,10 @@ ion-grid {
                 flex-flow: row nowrap !important;
 
                 .account-info{
+                    display: flex;
+                    flex-flow: row nowrap !important;
                     font-size: 2vh;
                     color: #ababab;
-                    
                 }
 
                 #date-joined{
@@ -98,10 +105,14 @@ ion-grid {
                 
             }
 
-            #locality {
+            .locality {
+            
                 padding-top: 0.3vh;
                 font-size: 2vh;
                 color: #7c2417;
+                word-wrap: none;
+                word-break: keep-all;
+                white-space: nowrap;
             }
 
 
@@ -114,26 +125,23 @@ ion-grid {
         width: 100% !important;
         display:flex !important ;
         justify-content: center !important ;
-        align-items: center !important ;
-        align-content: space-between !important ;
-        flex-flow: row wrap !important;
+        flex-flow: column wrap !important;
         padding:1vh;
         .center-short-desc{
             height: 85%;
             display:flex !important;
-            justify-content: center;
-            flex: 1, 1, 100% !important;
-
+            justify-content: center !important ;
+      
             .short-desc-title{
-               
                 padding-left: 2vh;
+                text-align:center;
                 font-size: 2.5vh;
                 font-weight: bold;
+                width: 100%;
             }
 
             .short-desc{
                 height: 80%;
-                display: flex !important;
                 overflow: hidden;
                 padding-top: 1vh;
                 padding-left: 2vh;

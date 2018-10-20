@@ -14,6 +14,7 @@ import { Base64 } from '@ionic-native/base64';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/filter';
 
+
 /** Generated class for the EditProfilePage page. */
 
 declare var cordova: any;
@@ -25,105 +26,81 @@ declare var cordova: any;
 })
 export class EditProfilePage implements OnInit{
 
- editProfileData =  {
-  "pass":
-  {
-    "value":{
-    "existing":""
-    }
-  },
-    "field_first_name":
-      {
-       "value":""
-      },
-    "field_last_name":
-      {
-       "value":""
-      },
-    "mail": 
-      {
-        "value": ""
-      },
-   
-    "field_city": 
-      {
-        "value": ""
-      },
-    "field_country": 
-      {
-        "value": ""
-      },
-    "field_region": 
-      {
-        "value": ""
-      },
-    "field_short_description": 
-      {
-        "value": ""
-      },
-    "field_mobile_number": 
-      {
-        "value": ""
-      }
- };
+  
 
+  editProfileData = {
+    "pass":{"value":{"existing":""}},
+    "mail":{"value":""},
+    "field_country":{"value":""},
+    "field_region":{"value":""},
+    "field_city":{"value":""},
+    "field_mobile_number":{"value":""},
+    "field_first_name":{"value":""},
+    "field_last_name":{"value":""},
+    "field_short_description":{"value":""}
+ }; 
 
+ /*  editProfileData = {
+  'field_city':[{'value':''}],
+  'field_country':[{'value':''}],
+  'field_first_name':[{'value':''}],
+  'field_last_name':[{'value':''}],
+  'field_mobile_number':[{'value':''}],
+  'field_region':[{'value':''}],
+  'field_short_description':[{'value':''}]
+   }; */
+
+  
   loading: any;
   lastImage: string = null
+  Image64: string;
 
   data: any;
   
-
-  displayImage: string;
-  displayFirstName: string;
-  displayLastName: string;
-  displayCountry: string;
-  displayRegion: string;
-  displayCity: string;
-  displayDesc: string;
-  displayEmail: string;
-  displayMobile: string;
+  displayData: any;
+  displayImage: any;
+  displayFirstName: any;
+  displayLastName: any;
+  displayCountry:any;
+  displayRegion:any;
+  displayCity:any;
+  displayDesc:any;
+  displayEmail:any;
+  displayMobile:any;
   
-
-  
-
-  constructor(private base64: Base64, private transfer: Transfer, private file: File, private filePath: FilePath, public platform: Platform, public actionSheetCtrl: ActionSheetController,private alertCtrl: AlertController, 
+  constructor(private base64: Base64, private transfer: Transfer, private file: File, private filePath: FilePath, 
+    public platform: Platform, public actionSheetCtrl: ActionSheetController,private alertCtrl: AlertController, 
     public navCtrl: NavController, public navParams: NavParams, public authService: AuthService,
     private camera: Camera, public loadingCtrl: LoadingController, public toastCtrl: ToastController) {
-      this.readUserfromAuth();
+
     }
 
     ngOnInit(){
       
-    }
-
-    readUserfromAuth(){
       this.authService.loadUserData().subscribe(data => {
-        console.log('raw data editprofile',data);
-        this.editProfileData = data;
-        this.displayImage = data.user_picture;
-        this.displayFirstName = data.field_first_name;
-        this.displayLastName = data.field_last_name;
-        this.displayCountry = data.field_country;
-        this.displayRegion = data.field_region;
-        this.displayCity = data.field_city;
-        this.displayMobile = data.field_mobile_number;
-        this.displayDesc = data.field_short_description;
-        this.displayEmail = data.mail;
-       
-        console.log('editProfileData test', this.editProfileData);
-        console.log('FirstNameLastname editprofile',this.displayFirstName, this.displayLastName);
-        console.log('Country,Region,City editprofile',this.displayCountry, this.displayRegion, this.displayCity);
-        console.log('mobile editprofile',this.displayMobile);
-        console.log('email editprofile',this.displayEmail);
-        console.log('desc editprofile',this.displayDesc);
-        console.log('img editprofile',this.displayImage);
+      
+        this.displayFirstName = data.field_first_name.map(res => { console.log(res.value); return res.value;  });
+        this.displayLastName = data.field_last_name.map(res => { console.log(res.value); return res.value;  });
+        this.displayEmail = data.mail.map(res => { console.log(res.value); return res.value;  });
+        this.displayMobile = data.field_mobile_number.map(res => { console.log(res.value); return res.value;  });
+        this.displayCity = data.field_city.map(res => { console.log(res.value); return res.value;  });
+        this.displayCountry = data.field_country.map(res => { console.log(res.value); return res.value;  });
+        this.displayRegion = data.field_region.map(res => { console.log(res.value); return res.value;  });
+        this.displayDesc = data.field_short_description.map(res => { console.log(res.value); return res.value;  });
+        this.displayCreated = data.created.map(res => { console.log(res.value); return res.value;  });
+        console.log('editprofiledata',);
+        console.log('editprofile fname',this.displayFirstName);
+        console.log('editprofile lname',this.displayLastName);
+        console.log('editprofile mobile',this.displayMobile);
+        console.log('editprofile city',this.displayCity);
+        console.log('editprofile country',this.displayCountry);
+        console.log('editprofile region',this.displayRegion);
+        console.log('editprofile mail',this.displayEmail);
       });
-    }
-  
-    
 
-  saveProfile(){
+    }
+
+    saveProfile(){
     console.log(this.editProfileData);
     this.showLoader();
     this.authService.saveProfileChanges(this.editProfileData).then( res=>{
@@ -254,9 +231,19 @@ public pathForImage(img) {
 
 //turn it into base64 string
 public toBase64(){
+
   let filePath = this.pathForImage(this.lastImage);
   this.base64.encodeFile(filePath).then((base64File: string) => {
     console.log(base64File);
+    this.Image64 = base64File;
+
+    let alert = this.alertCtrl.create({
+      title: 'Update Successful',
+      subTitle: 'Your base64 file is ='+this.Image64,
+      buttons: ['OK']
+    });
+    alert.present();
+
   }, (err) => {
     console.log(err);
   });

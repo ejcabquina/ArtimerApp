@@ -2,7 +2,12 @@ import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import { Storage } from '@ionic/storage';
 
-import 'rxjs/add/operator/map'
+
+import { Observable } from 'rxjs/Rx';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/filter';
+import { ThrowStmt } from '@angular/compiler';
+
 
 @Injectable()
 
@@ -15,8 +20,8 @@ export class AuthService {
   public UserID: string;
 
   public displayData: any;
-  public displayImg: any;
-  public displayFirstName: any;
+  public displayImage: any;
+  public displayFirstName: any ;
   public displayLastName: any;
   public displayCity: any;
   public displayRegion: any;
@@ -24,8 +29,11 @@ export class AuthService {
   public displayDesc: any;
   public displayEmail: any;
   public displayMobile: any;
+  public displayCreated: any;
+
   
   data: any;
+  SelectedNID:any;
 
 
   constructor(public http: Http, public storage: Storage) {
@@ -42,7 +50,6 @@ export class AuthService {
     headers.append('Content-Type', 'application/json');
     console.log(localStorage.getItem('basic_token'));
     this.http.post(this.apiUrl+'/user/login?_format=json',JSON.stringify(credentials),{headers: headers}).subscribe(res => {
-        let oAuthUrl = this.apiUrl+'/oauth/token';
         let apiTokenUrl = this.apiUrl+'/rest/session/token';
         let credData = credentials.name+':'+credentials.pass;
   
@@ -55,6 +62,7 @@ export class AuthService {
         headers.append('Authorization', 'Basic '+ localStorage.getItem('basic_token'));
           this.http.get(apiTokenUrl)
             .subscribe(data =>{ 
+              console.log('token get',data);
               localStorage.setItem('loggedin_token',data['_body']);
               this.getpostprocessLogs();
               this.assignDisplay();
@@ -72,39 +80,35 @@ export class AuthService {
   loadUserData(){
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
+    headers.append('Accept','application/json');
     headers.append('X-CSRF-Token', localStorage.getItem('loggedin_token'));
     headers.append('Authorization', 'Basic '+ localStorage.getItem('basic_token'));
-    headers.append('Access-Control-Allow-Credentials', 'true');
-    headers.append('Accept','application/json');
 
-    var readData = this.http.get(this.apiUrl+'/user/'+ this.UserID+'?_format=json', {headers: headers,withCredentials:true}).map(data =>data.json());
-    return readData;
+    var UserData = this.http.get(this.apiUrl+'/user/'+ this.UserID+'?_format=json', {headers: headers,withCredentials:true})
+    .map(res => res.json());
+    return UserData;
   }
 
   assignDisplay(){ //preloading files on auth
-    this.loadUserData().subscribe(data => {
-      console.log('from assign data raw',data)
+    this.loadUserData().map(data => {
       this.displayData = data;
-      this.displayImg = data.user_picture;
-      this.displayFirstName = data.field_first_name;
-      this.displayLastName = data.field_last_name;
-      this.displayCity = data.field_city; 
-      this.displayRegion = data.field_region; 
-      this.displayCountry = data.field_country; 
-      this.displayMobile = data.field_mobile_number;
-      this.displayDesc = data.field_short_description; 
-      this.displayEmail = data.mail; 
-      console.log('displayData authservice.ts',this.displayData);
-      console.log('displayCity authservice.ts',this.displayCity);
-      console.log('displayRegion authservice.ts',this.displayRegion);
-      console.log('displayCountry authservice.ts',this.displayCountry);
-      console.log('displayFirstName authservice.ts',this.displayFirstName);
-      console.log('displayLastName authservice.ts',this.displayLastName);
-      console.log('displayimage authservice.ts',this.displayImg);
-      console.log('displaymobile authservice.ts',this.displayMobile);
-      console.log('displaymail authservice.ts',this.displayEmail);
-      console.log('displaydesc authservice.ts',this.displayDesc);
+      this.displayImage = data.user_picture;
+      this.displayFirstName = data.field_first_name.map(res => { console.log(res.value); return res.value;  });
+      this.displayLastName =  data.field_last_name.map(res => { console.log(res.value); return res.value;  });
+      this.displayCity =  data.field_city.map(res => { console.log(res.value); return res.value;  });
+      this.displayRegion =  data.field_region.map(res => { console.log(res.value); return res.value;  });
+      this.displayCountry =  data.field_country.map(res => { console.log(res.value); return res.value;  });
+      this.displayMobile =  data.field_mobile_number.map(res => { console.log(res.value); return res.value;  });
+      this.displayDesc =  data.field_short_description.map(res => { console.log(res.value); return res.value;  });
+      this.displayEmail = data.mail.map(res => { console.log(res.value); return res.value;  });
+      this.displayCreated = data.created.map(res => { console.log(res.value); return res.value;  });
     });
+  }
+
+  assignSelectedNID(data){
+    this.SelectedNID = data;
+    console.log(this.SelectedNID);
+    return this.SelectedNID;
   }
 
   EditFirstName(data) { //checks current value and does patch query if '' or undefined or null
@@ -391,7 +395,7 @@ export class AuthService {
 
  EditImg(data) { //checks current value and does patch query if '' or undefined or null
     let InputImg = data.user_picture.url;
-    let currentImgValue = this.displayImg;
+    let currentImgValue = this.displayImage;
     if(currentImgValue !== '' ||  currentImgValue !== undefined || currentImgValue !== null){
       return new Promise((resolve, reject) => {
         let headers = new Headers();
@@ -497,18 +501,19 @@ storeUserID(uid){
   }
 
   createAuthorization(headers: Headers) {
-    headers.append('Authorization', localStorage.getItem('loggedin_token'));
+    headers.append('Authorization', 'Basic '+ localStorage.getItem('basic_token'));
   }
 
   saveProfileChanges(data){
+    console.log('saveprofilechanges',data);
     return new Promise((resolve, reject) => {
       let headers = new Headers();
       headers.append('Authorization', 'Basic '+ localStorage.getItem('basic_token'));
       headers.append('Content-Type', 'application/json');
 
-      this.http.patch(this.apiUrl+'/user/'+this.UserID+'?_format=json', data, {headers: headers})
+      this.http.patch(this.apiUrl+'/user/'+this.UserID+'?_format=json',JSON.parse(data), {headers: headers})
         .subscribe(res => {
-          
+          this.assignDisplay();
           resolve(res);
         }, (err) => {
           reject(err);
@@ -533,7 +538,7 @@ storeUserID(uid){
   logout(){
     return new Promise((resolve, reject) => {
         let headers = new Headers();
-        
+        headers.append('Accept','application/json');
         headers.append('X-CSRF-Token', localStorage.getItem('loggedin_token'));
         headers.append('Authorization', 'Basic '+ localStorage.getItem('basic_token'));
 

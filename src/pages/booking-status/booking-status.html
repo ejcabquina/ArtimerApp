@@ -10,45 +10,14 @@
     <ion-title>Booking Status</ion-title>
   </ion-navbar>
 
-<ion-searchbar>
-</ion-searchbar>
 </ion-header>
 
+
 <ion-content no-padding>
-<ion-grid>
 
+    <ion-tabs>
+        <ion-tab [root]="tab1Root" tabTitle="Posted"></ion-tab>
+        <ion-tab [root]="tab2Root" tabTitle="Taken"></ion-tab>
+    </ion-tabs>
 
-<ion-card (click)="gotoBookingStatusViewPage()">
-  <ion-col class="img-wrapper" col-3>
-    <img class="img" src="assets/imgs/profile/123.jpg"/>
-  </ion-col>
-  <ion-col class="desc-wrapper" col-7>
-    <ion-card-content>
-      
-        
-       
-        <div class="project-name">PAGAWA LOGO</div>
-
-        <div class="project-type">Logo Design</div>
-      
-        <div class="posted-by">posted by<div class="posted-by-name"> Juan Dela Cruz</div>
-        </div>
-  
-        <div class="project-summary">
-          The most popular industrial group ever, and largely
-          responsible for bringing the music to a mass audience.
-        </div>
-
-        <div class="locality">Quezon City, NCR</div>
-      
-    </ion-card-content>
-  </ion-col>
-
-  <ion-col class="status-wrapper" col-2>
-    <div class="status-indicator">Waiting</div>
-  </ion-col>
-
-  </ion-card>
-</ion-grid>
 </ion-content>
-

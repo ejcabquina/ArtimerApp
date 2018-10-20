@@ -1,0 +1,111 @@
+page-booking-status-posted {
+
+    ion-title{
+        .toolbar-title{
+            color: #7c2417;
+        }
+    }
+
+    
+
+    #navlogo {
+        height: auto !important;
+        width: 50% !important;
+        position: relative;
+	    top: 50%;
+        transform: translateY(-50%);
+        left: 50%;
+        transform: translateX(-50%);
+        }
+
+        
+
+
+    ion-content{
+        height: 100%;
+
+    ion-card{
+        height: 15% !important;
+        margin-bottom: 2% !important;
+        width: 100% !important;
+        display:flex !important ;
+        justify-content: flex-end;
+        align-items: center !important ;
+        flex-flow: row nowrap !important;
+
+        .img-wrapper{
+            height: 100% !important;
+            display: flex !important;
+            justify-content: center !important;
+            align-content: center !important;
+            .img{
+                height: 12vh;
+                width: 12vh;
+                border: 0.4vh;
+                border-radius: 100%;
+                border-style: dashed;
+                border-color: #7c2417;
+                padding: 0.7vh;
+            }
+        }
+
+        .desc-wrapper{
+            padding: 1vh;
+            
+            display: flex !important;
+            justify-content: center !important;
+            align-content: center !important;
+           
+            .project-name{
+                font-size: 2.3vh;
+                color: #7c2417;
+                font-weight: bold;
+            }
+            
+            .project-type{
+                font-size: 1.5vh;
+                color: #ababab;
+            }
+            
+            .posted-by {
+                padding-top: 0.3vh;
+                display:flex;
+                flex-flow: row nowrap;
+                font-size: 1.5vh;
+
+                .posted-by-name{
+                    color:#447d64;
+                    padding-left: 0.2em;
+                }
+            }
+            .project-summary{   
+                padding-top: 0.3vh;
+                font-size: 1.5vh;
+                line-height: normal;
+                word-wrap: break-word;
+            }
+            .locality {
+                padding-top: 0.3vh;
+                font-size: 1.3vh;
+                color: #7c2417;
+            }
+
+            
+        }//desc-wrapper
+
+        .status-wrapper{
+            display:flex !important;
+            justify-content: center !important;
+            align-content: center !important;
+            
+            .status-indicator{
+                font-size: 2vh;
+                font-weight: bold;
+            }
+        }
+
+
+    }//ion-card    
+    }//ion-content
+
+}

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 
@@ -26,42 +26,49 @@ import { ProjectListPage } from '../project-list/project-list';
   selector: 'page-cpanel',
   templateUrl: 'cpanel.html'
 })
-export class CPanelPage {
+export class CPanelPage implements OnInit {
 
+  displayData: any;
   displayImage: any;
   displayFirstName: any;
   displayLastName: any;
-  displayCountry: any;
-  displayRegion: any;
-  displayCity: any;
-  displayDesc: any;
-  displayEmail: any;
-  displayMobile: any;
+  displayCountry:any;
+  displayRegion:any;
+  displayCity:any;
+  displayDesc:any;
+  displayEmail:any;
+  displayMobile:any;
+  displayCreated:any;
 
 
   
   constructor( public navCtrl: NavController, public navParams: NavParams, public http: HttpClient, private authService: AuthService) {
     if(!localStorage.getItem('loggedin_token')) {
       authService.isLoggedIn = false;
+      
     }
-    this.readUserfromAuth();
+     
     }
-  
-    readUserfromAuth(){
+
+    ngOnInit(){
+
       this.authService.loadUserData().subscribe(data => {
-        console.log('data',data);
-        this.displayImage = this.authService.displayImg;
-        this.displayFirstName = this.authService.displayFirstName;
-        this.displayLastName = this.authService.displayLastName;
-        this.displayCountry = this.authService.displayCountry;
-        this.displayRegion = this.authService.displayRegion;
-        this.displayCity = this.authService.displayCity;
-        this.displayMobile = data.field_mobile_number;
-        this.displayDesc = data.field_short_description; 
-        this.displayEmail = data.mail;
+        this.displayFirstName = data.field_first_name.map(res => { console.log(res.value); return res.value;  });
+        this.displayLastName = data.field_last_name.map(res => { console.log(res.value); return res.value;  });
+        this.displayEmail = data.mail.map(res => { console.log(res.value); return res.value;  });
+        this.displayMobile = data.field_mobile_number.map(res => { console.log(res.value); return res.value;  });
+        this.displayCity = data.field_city.map(res => { console.log(res.value); return res.value;  });
+        this.displayCountry = data.field_country.map(res => { console.log(res.value); return res.value;  });
+        this.displayRegion = data.field_region.map(res => { console.log(res.value); return res.value;  });
+        this.displayDesc = data.field_short_description.map(res => { console.log(res.value); return res.value;  });
+        this.displayCreated = data.created.map(res => { console.log(res.value); return res.value;  });
+        this.displayImage = data.user_picture;
         
       });
+      
+    
     }
+
   
   gotoHomePage() {
     this.navCtrl.push(HomePage);

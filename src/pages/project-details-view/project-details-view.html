@@ -14,45 +14,36 @@
 
 
 <ion-content no-padding>
-
-    <ion-grid>
-
-        <ion-row class="input-wrapper">
-              <div class="item-name">Project Name</div>
-              <div class="client-style-text"></div>
-      </ion-row>
+  <ion-grid *ngFor="let project of items">
+   
+    <ion-row class="input-wrapper">
+      <div class="item-name">Project Name:</div>
+      <div class="client-style-text">{{project.title.value}}</div>
+    </ion-row>
   
-      <ion-row class="input-wrapper">
-          <div class="item-name">Project Type</div>
-             
-            <div class="client-style-text">
-            </div>
-                
-      </ion-row>
+    <ion-row class="input-wrapper">
+      <div class="item-name">Project Type:</div>
+      <div class="client-style-text"></div>
+    </ion-row>
       
-      <ion-row class="input-wrapper">
-          <div class="item-name">Project Details</div>
-        <div class="client-style-text">
-
-
-        </div>
-      </ion-row>
+    <ion-row class="input-wrapper">
+      <div class="item-name">Project Details:</div>  
+      <div class="client-style-text">
+          {{project.field_project_details.value}}
+      </div>
+    </ion-row>
   
-      
-     
-      <ion-row>
-          <div class="item-name">Deliverable</div>
-          
-      </ion-row>
+    <ion-row>
+      <div class="item-name">Deliverable</div>      
+    </ion-row>
   
       <ion-row>
           <ion-item>
               <ion-label>I have read and agreed to the terms and conditions of using Artimer App</ion-label>
-              <ion-checkbox color="designer" checked="false"></ion-checkbox>
+              <ion-checkbox color="designer" [(ngModel)]="termsprivacy" checked="false" [ngModelOptions]="{standalone: true}"></ion-checkbox>
             </ion-item>
       </ion-row>
-      <button class="takeProject" (click)="takeProject()" ion-button color="designer">Take Project</button>
-    
+    <button class="takeProject" ion-button color="designer" [(disabled)]="!termsprivacy"  type="submit">Take Project</button>
+ 
   </ion-grid>
-  
 </ion-content>

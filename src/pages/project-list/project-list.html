@@ -15,9 +15,9 @@
   <ion-grid>
       
 
-      <ion-card class="project-item" *ngFor="let item of items" (click)="gotoProjectDetailsViewPage()">
+      <ion-card class="project-item" *ngFor="let item of items" (click)="gotoProjectDetailsViewPage(item.nid)">
         <ion-col class="img-wrapper" col-4>
-          <img class="img" src="http://dev-artimer.pantheonsite.io{{item.avatars_user_picture}}"/>
+          <img class="img" src="{{item.user_picture}}"/>
         </ion-col>
         <ion-col class="desc-wrapper" col-6>
           <ion-card-content>

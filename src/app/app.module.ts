@@ -30,6 +30,8 @@ import { RegisterPage } from '../pages/register/register';
 import { CPanelPage } from '../pages/cpanel/cpanel';
 import { EditProfilePage } from '../pages/edit-profile/edit-profile';
 import { BookingStatusPage } from '../pages/booking-status/booking-status';
+import { BookingStatusPostedPage} from '../pages/booking-status-posted/booking-status-posted';
+import { BookingStatusTakenPage} from '../pages/booking-status-taken/booking-status-taken';
 import { BookingStatusViewPage } from '../pages/booking-status-view/booking-status-view';
 import { AccountSettingsPage } from '../pages/account-settings/account-settings';
 import { BrowseProfilePage } from '../pages/browse-profile/browse-profile';
@@ -53,6 +55,8 @@ import { RatingPage } from '../pages/rating/rating';
     CPanelPage,
     EditProfilePage,
     BookingStatusPage,
+    BookingStatusPostedPage,
+    BookingStatusTakenPage,
     BookingStatusViewPage,
     AccountSettingsPage,
     BrowseProfilePage,
@@ -79,6 +83,8 @@ import { RatingPage } from '../pages/rating/rating';
     CPanelPage,
     EditProfilePage,
     BookingStatusPage,
+    BookingStatusPostedPage,
+    BookingStatusTakenPage,
     BookingStatusViewPage,
     AccountSettingsPage,
     BrowseProfilePage,

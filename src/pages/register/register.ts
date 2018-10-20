@@ -19,7 +19,7 @@ export class RegisterPage {
     "field_city":{"value":""},
     "field_mobile_number":{"value":""},
     "field_first_name":{"value":""},
-    "field_last_name":{"value":""},
+    "field_last_name":{"value":""}
   };
 
   checker = {
