@@ -19,7 +19,8 @@ export class RegisterPage {
     "field_city":{"value":""},
     "field_mobile_number":{"value":""},
     "field_first_name":{"value":""},
-    "field_last_name":{"value":""}
+    "field_last_name":{"value":""},
+    "field_short_description":{"value":""}
   };
 
   checker = {
@@ -29,16 +30,13 @@ export class RegisterPage {
 
   IsPassMatch = false;
   IsMailMatch = false;
+  IsValidForm = false;
 
   constructor( private alertCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams, public authService: AuthService) {
   }
 
   formRegister(){
     this.checkPassMatch();
-    console.log(this.checker.pass2);
-    console.log(this.regData.pass);
-    console.log(this.checker.mail2);
-    console.log(this.regData.mail);
   }
 
   checkPassMatch(){
@@ -46,6 +44,14 @@ export class RegisterPage {
       let alert = this.alertCtrl.create({
         title: 'Password Mismatch',
         subTitle: 'Passwords do not match. Please re-type your password.',
+        buttons: ['OK']
+      });
+      alert.present();
+    }
+    else if(this.regData.pass.value == '' && this.checker.pass2.value == ''){
+      let alert = this.alertCtrl.create({
+        title: 'Password Empty',
+        subTitle: 'Password field is empty. Please type your password.',
         buttons: ['OK']
       });
       alert.present();
@@ -59,10 +65,18 @@ export class RegisterPage {
 
   checkMailMatch(){
    
-    if(this.regData.mail.value != this.checker.mail2.value){
+    if(this.regData.mail.value !== this.checker.mail2.value){
       let alert = this.alertCtrl.create({
         title: 'Email Mismatch',
         subTitle: 'Email do not match. Please re-type your email.',
+        buttons: ['OK']
+      });
+      alert.present();
+    }
+    else if(this.regData.mail.value == '' && this.checker.mail2.value == ''){
+      let alert = this.alertCtrl.create({
+        title: 'Email Empty',
+        subTitle: 'Email field is empty. Please type your email.',
         buttons: ['OK']
       });
       alert.present();
@@ -84,24 +98,33 @@ export class RegisterPage {
       alert.present();
     }
     else{
+      this.IsValidForm = true;
       this.postRegister();
       console.log('isvalidated');
     }
   }
 
   postRegister() {
-    let alert = this.alertCtrl.create({
-      title: 'Registration Successful',
-      subTitle: 'You have successfully registered an account.',
-      buttons: ['OK']
-    });
-    alert.present();
-
-    this.authService.register(this.regData).then((result) => {
-      this.navCtrl.setRoot(LoginPage);
-      this.navCtrl.popToRoot();
+    console.log(this.regData);
+    this.authService.register(this.regData).then(result => {
+      console.log('authService.register() result',result);
+      let alert = this.alertCtrl.create({
+        title: 'Registration Successful',
+        subTitle: 'You have successfully registered an account.',
+        buttons: ['OK']
+      });
+      alert.present();
     }, (err) => {
-     
+      console.log('authService.register() error',err);
+      var error = JSON.stringify(err['_body']);
+      var errorSlice = error.slice(58,-4);
+      var errorDetails = errorSlice.replace(/[\n]+/g,"");
+      let alert = this.alertCtrl.create({
+        title: 'Error '+err['status']+' '+err['statusText'],
+        subTitle: errorDetails,
+        buttons: ['OK']
+      });
+      alert.present();
     });
   }
 

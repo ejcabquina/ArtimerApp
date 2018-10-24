@@ -10,6 +10,7 @@ page-register {
             display: flex;
             align-content: center;
             padding: 0.7vh;
+            background-color: white;
             ::placeholder{
                 color: #7c2417 !important;
                 font-size: 2vh;
@@ -54,10 +55,18 @@ page-register {
         align-content: center !important;
     }
 
-    .long-text-input{
-        height: 12vh;
-        padding-top: 0.5vh;
-        align-items: flex-start;
+    ion-textarea{
+        color: #7c2417;
+        font-size: 2vh;
+        text-align: center;
+        border: 1px solid #7c2417;
+        border-radius: 5px;
+        margin: 1%;
+        background-color: white;
+        ::placeholder{
+            color: #7c2417 !important;
+            font-size: 2vh;
+        }
     }
 
    

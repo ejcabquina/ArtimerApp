@@ -1,49 +1,54 @@
 <ion-content padding>
-<ion-grid>
-<ion-row>
-        <img id="logo" alt="logo" src="assets/imgs/logo.svg" > 
-</ion-row>
-
-<form (submit)="formRegister(regData)">
-<ion-row>
-        <ion-input class="client-style" [(ngModel)]="regData.field_first_name.value" name="field_first_name" type="text" placeholder="First Name"></ion-input>
-        <ion-input class="client-style" [(ngModel)]="regData.field_last_name.value" name="field_last_name" type="text" placeholder="Last Name"></ion-input>
-</ion-row>
-
-<ion-row>
-        <ion-input class="client-style" [(ngModel)]="regData.name.value" name="name" type="text" placeholder="Username"></ion-input>
-</ion-row>
-
-<ion-row>
-        <ion-input class="client-style" [(ngModel)]="regData.pass.value" name="pass[pass1]" type="password" placeholder="Password"></ion-input>
-        <ion-input class="client-style" [(ngModel)]="checker.pass2.value" name="pass[pass2]" type="password" placeholder="Confirm Password"></ion-input>
-</ion-row>
+        <ion-grid>
+        <ion-row>
+                <img id="logo" alt="logo" src="assets/imgs/logo.svg" > 
+        </ion-row>
+        
+        <form (submit)="formRegister(regData)">
+        <ion-row>
+                <ion-input class="client-style" [(ngModel)]="regData.field_first_name.value" name="field_first_name" type="text" placeholder="First Name" required></ion-input>
+                <ion-input class="client-style" [(ngModel)]="regData.field_last_name.value" name="field_last_name" type="text" placeholder="Last Name" required></ion-input>
+        </ion-row>
+        
+        <ion-row>
+                <ion-input class="client-style" [(ngModel)]="regData.name.value" name="name" type="text" placeholder="Username" required></ion-input>
+        </ion-row>
+        
+        <ion-row>
+                <ion-input class="client-style" [(ngModel)]="regData.pass.value" name="pass[pass1]" type="password" placeholder="Password" required></ion-input>
+                <ion-input class="client-style" [(ngModel)]="checker.pass2.value" name="pass[pass2]" type="password" placeholder="Confirm Password" required></ion-input>
+        </ion-row>
+                  
+        <ion-row>
+                <ion-input class="client-style" [(ngModel)]="regData.mail.value" name="mail" type="email" placeholder="Email" required></ion-input>
+                <ion-input class="client-style" [(ngModel)]="checker.mail2.value" name="mail2" type="email" placeholder="Re-enter Email" required></ion-input>
+        </ion-row>
+                  
+        <ion-row>
+                <ion-input class="client-style" [(ngModel)]="regData.field_mobile_number.value" name="mobile" type="number" placeholder="Mobile Number" required></ion-input>
+        </ion-row>
+        
+        <ion-row>
+                <ion-input class="client-style" [(ngModel)]="regData.field_country.value" name="country" type="text" placeholder="Country" required></ion-input>
+                <ion-input class="client-style" [(ngModel)]="regData.field_region.value" name="region" type="text" placeholder="Region" required></ion-input>
+                <ion-input class="client-style" [(ngModel)]="regData.field_city.value" name="city" type="text" placeholder="City" required></ion-input>
+        </ion-row>
+        
+        <ion-row>
+               
+                <ion-textarea  class='long-text-input' type="text" maxlength="150" rows="4" wrap="hard" placeholder="Short description about you" [(ngModel)]="regData.field_short_description.value" name="field_short_description" required></ion-textarea>
+        </ion-row>
+        
+        <ion-row>
+            <button class="signup" block type="submit" ion-button color="client">CONFIRM</button>
+        </ion-row>
+        </form> <!--doSignup()-->
+              
+        
+                <div class="center-style"><p class="client-style-text">Already have an account?</p> </div>
+        
+                <button class="login" (click) ="gotoLogin()" ion-button color="client" outline>SIGN IN</button>
+        
+        </ion-grid>
+        </ion-content>
           
-<ion-row>
-        <ion-input class="client-style" [(ngModel)]="regData.mail.value" name="mail" type="email" placeholder="Email"></ion-input>
-        <ion-input class="client-style" [(ngModel)]="checker.mail2.value" name="mail2" type="email" placeholder="Re-enter Email"></ion-input>
-</ion-row>
-          
-<ion-row>
-        <ion-input class="client-style" [(ngModel)]="regData.field_mobile_number.value" name="mobile" type="number" placeholder="Mobile Number"></ion-input>
-</ion-row>
-
-<ion-row>
-        <ion-input class="client-style" [(ngModel)]="regData.field_country.value" name="country" type="text" placeholder="Country"></ion-input>
-        <ion-input class="client-style" [(ngModel)]="regData.field_region.value" name="region" type="text" placeholder="Region"></ion-input>
-        <ion-input class="client-style" [(ngModel)]="regData.field_city.value" name="city" type="text" placeholder="City"></ion-input>
-</ion-row>
-
-<ion-row>
-    <button class="signup" block type="submit" ion-button color="client">CONFIRM</button>
-</ion-row>
-</form> <!--doSignup()-->
-      
-
-        <div class="center-style"><p class="client-style-text">Already have an account?</p> </div>
-
-        <button class="login" (click) ="gotoLogin()" ion-button color="client" outline>SIGN IN</button>
-
-</ion-grid>
-</ion-content>
-  

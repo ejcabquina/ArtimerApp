@@ -55,10 +55,10 @@ page-login {
         text-align: center;
     }
     
-    #btn-container{
+    .btn-container{
         padding:0px;
 
-    #login-wrapper{
+    .login-wrapper{
         padding-right: 1%;
         .login {
             height: 6vh !important;
@@ -71,7 +71,7 @@ page-login {
             
         }
     }//login-wrapper
-    #signup-wrapper{
+    .signup-wrapper{
         padding-left: 1%;
         .signup {
             height: 6vh !important;

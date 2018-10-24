@@ -18,22 +18,21 @@
 
       <ion-row id="img-section">
 
-          <div><img class="prof-img" *ngFor="let img of displayImage" src="{{img.url}}"/></div>
-          <div><img class="prof-img" src="{{pathForImage(lastImage)}}" [hidden]="lastImage === null">
-            <h3 [hidden]="lastImage !== null">Please Select Image!</h3></div> 
+          <div><img class="prof-img" [src]="currentImage"/></div>
+            <h3 [hidden]="lastImage !== null">Change Profile Photo</h3>
           <div class="change-photo">
             <ion-item>
-              <button (click)="presentActionSheet()">
+              <button ion-button icon-left color="client" (click)="presentActionSheet()">
                 <ion-icon name="camera"></ion-icon>Select Image
               </button>
-
-
-                <button ion-button icon-left (click)="toBase64()" [disabled]="lastImage === null">
-                    <ion-icon name="cloud-upload"></ion-icon>CheckBase64
-                  </button>
-              
+        
+              <button ion-button icon-left color="designer" (click)="uploadImage()" [disabled]="lastImage === null">
+                <ion-icon name="cloud-upload"></ion-icon>Upload
+              </button>
             </ion-item>
           </div>
+
+          
   
       </ion-row>
 

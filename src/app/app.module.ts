@@ -13,7 +13,6 @@ import { Transfer } from '@ionic-native/transfer';
 import { FilePath } from '@ionic-native/file-path';
 import { File } from '@ionic-native/file';
 
-import { Base64 } from '@ionic-native/base64';
 
 import { IonicStorageModule } from '@ionic/storage';
 
@@ -40,6 +39,8 @@ import { NotificationPage } from '../pages/notification/notification';
 import { CreativeBriefFaqPage } from '../pages/creative-brief-faq/creative-brief-faq';
 import { ProfilePage } from '../pages/profile/profile';
 import { RatingPage } from '../pages/rating/rating';
+import { Base64 } from '@ionic-native/base64';
+
 
 
 
@@ -95,6 +96,7 @@ import { RatingPage } from '../pages/rating/rating';
     RatingPage
   ],
   providers: [
+    Base64,
     AuthService,
     StatusBar,
     SplashScreen,
@@ -102,7 +104,6 @@ import { RatingPage } from '../pages/rating/rating';
     Transfer,
     Camera,
     FilePath,
-    Base64,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
     
   

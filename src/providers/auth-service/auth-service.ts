@@ -3,21 +3,24 @@ import { Http, Headers } from '@angular/http';
 import { Storage } from '@ionic/storage';
 
 
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/filter';
-import { ThrowStmt } from '@angular/compiler';
+
+
 
 
 @Injectable()
 
 export class AuthService {
 
-  apiUrl: string ='http://127.0.0.1/drupal';
+  apiUrl: string ='http://dev-artimer.pantheonsite.io';
   public isLoggedIn = false;
   public CSRFToken: string;
   public LToken: string;
   public UserID: string;
+  public BasicAuthString: string;
 
   public displayData: any;
   public displayImage: any;
@@ -54,6 +57,7 @@ export class AuthService {
         let credData = credentials.name+':'+credentials.pass;
   
           localStorage.setItem('basic_token',btoa(credData));
+          this.BasicAuthString = localStorage.getItem('basic_token');
           console.log(localStorage.getItem('basic_token'));
         
         this.storeLOtoken(res.json().logout_token);
@@ -82,10 +86,11 @@ export class AuthService {
     headers.append('Content-Type', 'application/json');
     headers.append('Accept','application/json');
     headers.append('X-CSRF-Token', localStorage.getItem('loggedin_token'));
-    headers.append('Authorization', 'Basic '+ localStorage.getItem('basic_token'));
+    headers.append('Authorization', 'Basic '+ this.BasicAuthString);
 
     var UserData = this.http.get(this.apiUrl+'/user/'+ this.UserID+'?_format=json', {headers: headers,withCredentials:true})
-    .map(res => res.json());
+    .map(res => { console.log('raw response',res); console.log('in userdata', res.json() ); return res.json(); });
+    console.log('UserData loaded',UserData);
     return UserData;
   }
 
@@ -105,6 +110,9 @@ export class AuthService {
     });
   }
 
+
+
+
   assignSelectedNID(data){
     this.SelectedNID = data;
     console.log(this.SelectedNID);
@@ -116,25 +124,25 @@ export class AuthService {
     console.log('logout_token stored in LToken',this.LToken);
     console.log('csrf_token stored in CSRFToken',this.CSRFToken);
     console.log('uid stored in UserID',this.UserID);
-}
+  }
 
-getpostprocessLogs(){
-  console.log('logout_token stored in LToken',this.LToken);
-  console.log('csrf_token stored in CSRFToken',this.CSRFToken);
-  console.log('uid stored in UserID',this.UserID);
-  console.log('token from session',localStorage.getItem('loggedin_token'));
-}
+  getpostprocessLogs(){
+    console.log('logout_token stored in LToken',this.LToken);
+    console.log('csrf_token stored in CSRFToken',this.CSRFToken);
+    console.log('uid stored in UserID',this.UserID);
+    console.log('token from session',localStorage.getItem('loggedin_token'));
+  }
 
-logoutCredentialsCheck(){
-  console.log('logout_token stored in LToken',this.LToken);
-  console.log('csrf_token stored in CSRFToken',this.CSRFToken);
-  console.log('uid stored in UserID',this.UserID);
-}
-  
-storeUserID(uid){
-  this.storage.set('uid', uid);
-  this.useUserID(uid);
-}
+  logoutCredentialsCheck(){
+    console.log('logout_token stored in LToken',this.LToken);
+    console.log('csrf_token stored in CSRFToken',this.CSRFToken);
+    console.log('uid stored in UserID',this.UserID);
+  }
+    
+  storeUserID(uid){
+    this.storage.set('uid', uid);
+    this.useUserID(uid);
+  }
 
   storeLOtoken(token_logout){
     this.storage.set('logout_token', token_logout);
@@ -158,7 +166,6 @@ storeUserID(uid){
   useUserID(uid) {
     this.UserID = uid;
   }
-
 
   loadLOToken() {
     let token_logout = this.storage.get('logout_token');
@@ -184,18 +191,19 @@ storeUserID(uid){
   }
 
   createAuthorization(headers: Headers) {
-    headers.append('Authorization', 'Basic '+ localStorage.getItem('basic_token'));
+    headers.append('Authorization', 'Basic '+ this.BasicAuthString);
   }
 
   saveProfileChanges(data){
     console.log('saveprofilechanges',data);
     return new Promise((resolve, reject) => {
       let headers = new Headers();
-      headers.append('Authorization', 'Basic '+ localStorage.getItem('basic_token'));
+      headers.append('Authorization', 'Basic '+ this.BasicAuthString);
       headers.append('Content-Type', 'application/json');
 
       this.http.patch(this.apiUrl+'/user/'+this.UserID+'?_format=json',JSON.stringify(data), {headers: headers})
         .subscribe(res => {
+          console.log('saveprofilechange res',res);
           this.assignDisplay();
           resolve(res);
         }, (err) => {
@@ -204,17 +212,48 @@ storeUserID(uid){
     });
   }
 
+    
+
+
+  /* uploadPhoto(data){
+    console.log('saveprofilechanges',data);
+    return new Promise((resolve, reject) => {
+      let headers = new Headers();
+      headers.append('Authorization', 'Basic '+ this.BasicAuthString);
+      headers.append('Content-Type', 'application/octet-stream');
+      headers.append('Content-Dispositon', 'filename:'+data);
+
+      this.http.post(this.apiUrl+'/file/upload/user/user/user_picture?_format=json',data, {headers: headers})
+        .map(res => {
+          console.log('upload',res);
+          var reference = res.fid.value;
+          this.http.patch(this.apiUrl+'/user/'+this.UserID+'?_format=json',JSON.stringify(reference), {headers: headers})
+            .subscribe(res => {
+              this.assignDisplay();
+              resolve(res);
+            }, (err) => {
+              reject(err);
+            });
+          resolve(res);
+        }, (err) => {
+          reject(err);
+        });
+    });
+  } */
+
   register(data) {
     return new Promise((resolve, reject) => {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
         console.log('register executes');
         this.http.post(this.apiUrl+'/user/register?_format=json', data, {headers: headers})
-          .subscribe(res => {
-            resolve(res.json());
-          }, (err) => {
-            reject(err);
-          });
+        .subscribe(res => {
+
+             console.log('register .map',res);
+            resolve(res);
+        }, (err) => {
+          reject(err);
+        });
     });
   }
 
