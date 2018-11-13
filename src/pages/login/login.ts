@@ -17,7 +17,7 @@ export class LoginPage{
   data:any;
 
   constructor(public navCtrl: NavController, private authService: AuthService, public loadingCtrl: LoadingController, private toastCtrl: ToastController) {
-  
+    this.authService.destroyUserCredentials();
   }
 
   doLogin() {

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform, ToastController, LoadingController, AlertController, ActionSheetController, normalizeURL } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, ToastController, LoadingController, AlertController, ActionSheetController } from 'ionic-angular';
 
 
 import { AuthService } from '../../providers/auth-service/auth-service';
@@ -42,6 +42,7 @@ export class EditProfilePage implements OnInit{
   
   displayData: any;
   currentImage: string;
+  currentFID:string;
   displayFirstName: any;
   displayLastName: any;
   displayCountry:any;
@@ -52,7 +53,8 @@ export class EditProfilePage implements OnInit{
   displayMobile:any;
 
   inputData: string;
-  inputImage: string;
+  inputFID: string;
+
   inputFirstName: string;
   inputLastName: string;
   inputCountry:string;
@@ -71,7 +73,8 @@ export class EditProfilePage implements OnInit{
     "field_mobile_number":{"value":""},
     "field_first_name":{"value":""},
     "field_last_name":{"value":""},
-    "field_short_description":{"value":""}
+    "field_short_description":{"value":""},
+    "user_picture":{"target_id": ""}
  }; 
 
  /*  editProfileData = {
@@ -101,6 +104,7 @@ export class EditProfilePage implements OnInit{
       this.authService.loadUserData().subscribe(data => {
       
       this.currentImage = data.user_picture.map(res => { console.log(res.url); return res.url; });
+      this.currentFID = data.user_picture.map(res => { console.log(res.target_id); this.inputFID =res.target_id; return res.target_id; });
       this.displayFirstName = data.field_first_name.map(res => { console.log(res.value); this.inputFirstName = res.value; return res.value; });
       this.displayLastName = data.field_last_name.map(res => { console.log(res.value); this.inputLastName = res.value; return res.value;});
       this.displayEmail = data.mail.map(res => { console.log(res.value); this.inputEmail = res.value; return res.value; });
@@ -111,6 +115,8 @@ export class EditProfilePage implements OnInit{
       this.displayDesc = data.field_short_description.map(res => { console.log(res.value); this.inputDesc = res.value; return res.value; });
 
       this.editProfileData = { //sets input to currentvalues. this gets overwritten by [(ngModel)] inputs
+      
+        "user_picture":{"target_id": this.inputFID},
         "pass":{"value":{"existing":""}},
         "mail":{"value":this.inputEmail},
         "field_country":{"value":this.inputCountry},
@@ -122,8 +128,8 @@ export class EditProfilePage implements OnInit{
         "field_short_description":{"value":this.inputDesc}
      }; 
        
-        console.log('editprofiledata',);
-        console.log('editprofiledata',this.currentImage);
+        console.log('currentImage',this.currentImage);
+        console.log('currentFID',this.currentFID);
         console.log('sample input',this.inputFirstName);
         console.log('editprofile fname',this.displayFirstName);
         console.log('editprofile lname',this.displayLastName);
@@ -140,6 +146,7 @@ export class EditProfilePage implements OnInit{
       this.authService.loadUserData().subscribe(data => {
       
       this.currentImage = data.user_picture.map(res => { console.log(res.url); return res.url; });
+      this.currentFID = data.user_picture.map(res => { console.log(res.target_id); this.inputFID =res.target_id; return res.target_id; });
       this.displayFirstName = data.field_first_name.map(res => { console.log(res.value); this.inputFirstName = res.value; return res.value; });
       this.displayLastName = data.field_last_name.map(res => { console.log(res.value); this.inputLastName = res.value; return res.value;});
       this.displayEmail = data.mail.map(res => { console.log(res.value); this.inputEmail = res.value; return res.value; });
@@ -150,15 +157,16 @@ export class EditProfilePage implements OnInit{
       this.displayDesc = data.field_short_description.map(res => { console.log(res.value); this.inputDesc = res.value; return res.value; });
 
       
-        console.log('editprofiledata',);
-        console.log('editprofiledata',this.currentImage);
-        console.log('editprofile fname',this.displayFirstName);
-        console.log('editprofile lname',this.displayLastName);
-        console.log('editprofile mobile',this.displayMobile);
-        console.log('editprofile city',this.displayCity);
-        console.log('editprofile country',this.displayCountry);
-        console.log('editprofile region',this.displayRegion);
-        console.log('editprofile mail',this.displayEmail);
+      console.log('currentImage',this.currentImage);
+      console.log('currentFID',this.currentFID);
+      console.log('sample input',this.inputFirstName);
+      console.log('editprofile fname',this.displayFirstName);
+      console.log('editprofile lname',this.displayLastName);
+      console.log('editprofile mobile',this.displayMobile);
+      console.log('editprofile city',this.displayCity);
+      console.log('editprofile country',this.displayCountry);
+      console.log('editprofile region',this.displayRegion);
+      console.log('editprofile mail',this.displayEmail);
       });
 
     }
@@ -167,30 +175,53 @@ export class EditProfilePage implements OnInit{
     this.reloadCurrentData();
     console.log(this.editProfileData);
     this.showLoader();
-    this.authService.saveProfileChanges(this.editProfileData).then( res=>{
-      console.log('SaveProfileChanges',res);
-      if(this.targetFID != null){
-        this.SavePhoto();
-      }
+    if(this.targetFID == null){
+      console.log('no target FID update',this.targetFID);
+      this.authService.saveProfileChanges(this.editProfileData).then( res=>{
+        console.log('SaveProfileChanges',res);
 
-      let alert = this.alertCtrl.create({
-        title: 'Update Successful',
-        subTitle: 'You have successfully updated your profile.',
-        buttons: ['OK']
-      });
-      alert.present();
+        let alert = this.alertCtrl.create({
+          title: 'Update Successful',
+          subTitle: 'You have successfully updated your profile.',
+          buttons: ['OK']
+        });
+        alert.present();
 
+        this.authService.assignDisplay(); //reload
+        this.navCtrl.popToRoot();
+        this.loading.dismiss();
       
-      this.authService.assignDisplay(); //reload
-      this.navCtrl.popToRoot();
-      this.loading.dismiss();
-     
-      //this.navCtrl.popToRoot();
-    }, (err) => {
-      this.loading.dismiss();
-      this.presentToast(err);
-    });
-      console.log('save profile')
+        //this.navCtrl.popToRoot();
+      }, (err) => {
+        this.loading.dismiss();
+        this.presentToast(err);
+      });
+        console.log('save profile with no uploaded FID');
+      }
+    if(this.targetFID != null){
+      this.inputFID = this.targetFID;
+      console.log('valid target FID update',this.targetFID);
+      this.authService.saveProfileChanges(this.editProfileData).then( res=>{
+        console.log('SaveProfileChanges',res);
+
+        let alert = this.alertCtrl.create({
+          title: 'Update Successful',
+          subTitle: 'You have successfully updated your profile.',
+          buttons: ['OK']
+        });
+        alert.present();
+
+        this.authService.assignDisplay(); //reload
+        this.navCtrl.popToRoot();
+        this.loading.dismiss();
+      
+        //this.navCtrl.popToRoot();
+      }, (err) => {
+        this.loading.dismiss();
+        this.presentToast(err);
+      });
+      console.log('save profile with FID');
+    }
    
   }
 
@@ -315,9 +346,8 @@ public pathForImage(img) {
   if (img === null) {
     return '';
   } else {
-    let path = cordova.file.dataDirectory;
-    let normalizePath = normalizeURL(path);
-    return normalizePath + img;
+    
+    return cordova.file.dataDirectory + img;
   }
 }
 
@@ -393,6 +423,7 @@ public toBase64(data){
         res.json().fid.map(data => { this.targetFID = data.value; return data.value });
         console.log(this.targetFID);
         alert.present();
+        
         resolve(res);
       }
       }, (err) => {
@@ -401,7 +432,7 @@ public toBase64(data){
     });
     }
 
-    SavePhoto(){
+    /*SavePhoto(){
       var fid = this.targetFID;
       console.log('SavePhoto() fires',fid );
       return new Promise((resolve, reject) => {
@@ -428,7 +459,7 @@ public toBase64(data){
   
   ionViewDidLoad() {
     console.log('ionViewDidLoad EditProfilePage');
-  }
+  }*/
 
 }
 

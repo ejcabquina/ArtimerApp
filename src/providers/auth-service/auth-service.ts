@@ -17,10 +17,11 @@ export class AuthService {
 
   apiUrl: string ='http://dev-artimer.pantheonsite.io';
   public isLoggedIn = false;
-  public CSRFToken: string;
-  public LToken: string;
-  public UserID: string;
-  public BasicAuthString: string;
+  public CSRFToken: string = null;
+  public RestToken: string = null;
+  public LToken: string = null;
+  public UserID: string = null;
+  public BasicAuthString: string = null;
 
   public displayData: any;
   public displayImage: any;
@@ -42,16 +43,36 @@ export class AuthService {
   constructor(public http: Http, public storage: Storage) {
     this.isLoggedIn = false;
     this.CSRFToken = null;
+    this.RestToken = null;
     this.LToken = null;
     this.UserID = null;
     this.getlogs();
   }
 
+  register(data) {
+    return new Promise((resolve, reject) => {
+        let headers = new Headers();
+        headers.append('Accept','application/json');
+        headers.append('Content-Type', 'application/json');
+        console.log('register executes');
+        this.http.post(this.apiUrl+'/user/register?_format=json', data, {headers: headers})
+        .subscribe(res => {
+
+             console.log('register .map',res);
+            resolve(res);
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+
   authenticate(credentials){
+    console.log('login data',credentials);
     return new Promise((resolve, reject) => {
     let headers = new Headers();
+    headers.append('Accept','application/json');
     headers.append('Content-Type', 'application/json');
-    console.log(localStorage.getItem('basic_token'));
+
     this.http.post(this.apiUrl+'/user/login?_format=json',JSON.stringify(credentials),{headers: headers}).subscribe(res => {
         let apiTokenUrl = this.apiUrl+'/rest/session/token';
         let credData = credentials.name+':'+credentials.pass;
@@ -67,7 +88,8 @@ export class AuthService {
           this.http.get(apiTokenUrl)
             .subscribe(data =>{ 
               console.log('token get',data);
-              localStorage.setItem('loggedin_token',data['_body']);
+              this.RestToken = JSON.stringify(data);
+              console.log('rest token', this.RestToken);
               this.getpostprocessLogs();
               this.assignDisplay();
             }, error =>{
@@ -81,11 +103,29 @@ export class AuthService {
       });
   }
 
+  logout(){
+    return new Promise((resolve, reject) => {
+        let headers = new Headers();
+        headers.append('Accept','application/json');
+        headers.append('X-CSRF-Token', this.CSRFToken);
+        headers.append('Authorization', 'Basic '+ localStorage.getItem('basic_token'));
+
+        this.http.post(this.apiUrl+'/user/logout?_format=json',{}, {headers: headers})
+          .subscribe(res => {
+            this.destroyUserCredentials();
+          
+          }, (err) => {
+            reject(err);
+          });
+    });
+  }
+  
+
   loadUserData(){
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
     headers.append('Accept','application/json');
-    headers.append('X-CSRF-Token', localStorage.getItem('loggedin_token'));
+    headers.append('X-CSRF-Token', this.RestToken);
     headers.append('Authorization', 'Basic '+ this.BasicAuthString);
 
     var UserData = this.http.get(this.apiUrl+'/user/'+ this.UserID+'?_format=json', {headers: headers,withCredentials:true})
@@ -124,19 +164,21 @@ export class AuthService {
     console.log('logout_token stored in LToken',this.LToken);
     console.log('csrf_token stored in CSRFToken',this.CSRFToken);
     console.log('uid stored in UserID',this.UserID);
+    console.log('rest token stored in RestToken',this.RestToken);
   }
 
   getpostprocessLogs(){
     console.log('logout_token stored in LToken',this.LToken);
     console.log('csrf_token stored in CSRFToken',this.CSRFToken);
     console.log('uid stored in UserID',this.UserID);
-    console.log('token from session',localStorage.getItem('loggedin_token'));
+    console.log('rest token stored in RestToken',this.RestToken);
   }
 
   logoutCredentialsCheck(){
     console.log('logout_token stored in LToken',this.LToken);
     console.log('csrf_token stored in CSRFToken',this.CSRFToken);
     console.log('uid stored in UserID',this.UserID);
+    console.log('rest token stored in RestToken',this.RestToken);
   }
     
   storeUserID(uid){
@@ -200,6 +242,7 @@ export class AuthService {
       let headers = new Headers();
       headers.append('Authorization', 'Basic '+ this.BasicAuthString);
       headers.append('Content-Type', 'application/json');
+      headers.append('X-CSRF-Token', this.RestToken);
 
       this.http.patch(this.apiUrl+'/user/'+this.UserID+'?_format=json',JSON.stringify(data), {headers: headers})
         .subscribe(res => {
@@ -241,37 +284,4 @@ export class AuthService {
     });
   } */
 
-  register(data) {
-    return new Promise((resolve, reject) => {
-        let headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-        console.log('register executes');
-        this.http.post(this.apiUrl+'/user/register?_format=json', data, {headers: headers})
-        .subscribe(res => {
-
-             console.log('register .map',res);
-            resolve(res);
-        }, (err) => {
-          reject(err);
-        });
-    });
-  }
-
-  logout(){
-    return new Promise((resolve, reject) => {
-        let headers = new Headers();
-        headers.append('Accept','application/json');
-        headers.append('X-CSRF-Token', localStorage.getItem('loggedin_token'));
-        headers.append('Authorization', 'Basic '+ localStorage.getItem('basic_token'));
-
-        this.http.post(this.apiUrl+'/user/logout?_format=json',{}, {headers: headers})
-          .subscribe(res => {
-            this.destroyUserCredentials();
-          
-          }, (err) => {
-            reject(err);
-          });
-    });
-  }
-  
 }
